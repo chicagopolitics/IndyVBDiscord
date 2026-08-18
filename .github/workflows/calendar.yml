@@ -1,0 +1,67 @@
+name: Publish calendar
+
+on:
+  # Four times a day. Cron here is UTC, and GitHub often delays scheduled runs
+  # by several minutes under load - fine for data that changes this slowly.
+  schedule:
+    - cron: "0 5,11,17,23 * * *"
+  # Lets you trigger a refresh by hand from the Actions tab.
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+# Permissions required by the Pages deployment action.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race; queue them instead of cancelling, so a scheduled
+# refresh cannot be dropped halfway.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build the calendar
+        # --min-events guards against publishing an empty calendar if the
+        # scrape breaks: subscribers would otherwise lose every entry.
+        run: |
+          mkdir -p public
+          python -m indyvb.cli calendar \
+            --min-events 10 \
+            --name "Indy Volleyball" \
+            -o public/indyvb.ics
+          cp web/index.html public/index.html
+
+      - name: Show what was published
+        run: |
+          echo "Entries: $(grep -c 'BEGIN:VEVENT' public/indyvb.ics)"
+          echo "Size:    $(du -h public/indyvb.ics | cut -f1)"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

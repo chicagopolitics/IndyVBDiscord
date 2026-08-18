@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indy Volleyball Calendar</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #5c5c5c;
+    --card: #f5f5f7;
+    --border: #dcdce0;
+    --accent: #0a5c9e;
+    --warn-bg: #fff6e0;
+    --warn-border: #e8c56a;
+    --warn-fg: #6b4e00;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14161a;
+      --fg: #e9e9ec;
+      --muted: #a2a4ac;
+      --card: #1e2126;
+      --border: #32363e;
+      --accent: #63b3ed;
+      --warn-bg: #33290f;
+      --warn-border: #7a6320;
+      --warn-fg: #f0d9a0;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem 1.25rem 4rem;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 .4rem; }
+  h2 { font-size: 1.15rem; margin: 2.2rem 0 .6rem; }
+  .sub { color: var(--muted); margin: 0 0 2rem; }
+  .urlbox {
+    display: flex; gap: .5rem; flex-wrap: wrap;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: .85rem;
+  }
+  code#feed {
+    flex: 1 1 20rem; min-width: 0; overflow-x: auto; white-space: nowrap;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .9rem; padding: .45rem .6rem;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+  }
+  button {
+    flex: 0 0 auto; cursor: pointer; font: inherit; font-weight: 600;
+    padding: .45rem 1.1rem; border-radius: 6px;
+    border: 1px solid var(--accent); background: var(--accent); color: #fff;
+  }
+  button:hover { opacity: .9; }
+  .note {
+    background: var(--warn-bg); border: 1px solid var(--warn-border);
+    color: var(--warn-fg); border-radius: 8px; padding: .85rem 1rem;
+    margin: 1.5rem 0;
+  }
+  ol { padding-left: 1.3rem; }
+  li { margin: .3rem 0; }
+  details {
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: .7rem .9rem; margin: .55rem 0; background: var(--card);
+  }
+  summary { cursor: pointer; font-weight: 600; }
+  footer {
+    margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: .875rem;
+  }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>🏐 Indy Volleyball Calendar</h1>
+  <p class="sub">
+    Upcoming leagues and tournaments from CCA Sports and iBeach Volleyball,
+    updated automatically a few times a day.
+  </p>
+
+  <h2>Subscribe</h2>
+  <p>Copy this address, then add it to your calendar app:</p>
+  <div class="urlbox">
+    <code id="feed">loading&hellip;</code>
+    <button id="copy" type="button">Copy</button>
+  </div>
+
+  <div class="note">
+    <strong>Subscribe to the link — don't download it.</strong>
+    Downloading the file copies today's events in once and they never update.
+    Subscribing keeps it live, so new leagues appear on their own.
+  </div>
+
+  <h2>How to add it</h2>
+
+  <details open>
+    <summary>Google Calendar (do this on a computer)</summary>
+    <ol>
+      <li>Open <a href="https://calendar.google.com">Google Calendar</a>.</li>
+      <li>In the left sidebar, next to <em>Other calendars</em>, click <strong>+</strong>.</li>
+      <li>Choose <strong>From URL</strong>.</li>
+      <li>Paste the address above and click <strong>Add calendar</strong>.</li>
+    </ol>
+    <p>It then syncs to the Google Calendar app on your phone automatically.
+       Google refreshes subscribed calendars on its own schedule, so new events
+       can take up to a day to appear.</p>
+  </details>
+
+  <details>
+    <summary>iPhone or iPad</summary>
+    <ol>
+      <li>Open <strong>Settings</strong> and go to <strong>Apps &rarr; Calendar</strong>.</li>
+      <li>Tap <strong>Accounts &rarr; Add Account &rarr; Other</strong>.</li>
+      <li>Tap <strong>Add Subscribed Calendar</strong>.</li>
+      <li>Paste the address above and tap <strong>Next</strong>, then <strong>Save</strong>.</li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>Outlook</summary>
+    <ol>
+      <li>Open <a href="https://outlook.live.com/calendar">Outlook Calendar</a>.</li>
+      <li>Click <strong>Add calendar &rarr; Subscribe from web</strong>.</li>
+      <li>Paste the address, give it a name, and click <strong>Import</strong>.</li>
+    </ol>
+  </details>
+
+  <h2>What's on it</h2>
+  <ul>
+    <li>Each league and tournament on the day it starts, with venue address and cost.</li>
+    <li>An all-day reminder on each signup deadline.</li>
+    <li>A map link, so tapping the location gives you directions.</li>
+  </ul>
+
+  <footer>
+    Times are US Eastern (Indianapolis). Always confirm details on the
+    organizer's own signup page before paying &mdash; this calendar is
+    generated automatically and can lag behind changes.
+  </footer>
+</main>
+
+<script>
+  // Build the absolute feed URL from wherever this page is served, so the
+  // instructions stay correct no matter what the repo or domain is called.
+  var feedUrl = new URL('indyvb.ics', window.location.href).href;
+  var feedEl = document.getElementById('feed');
+  feedEl.textContent = feedUrl;
+
+  document.getElementById('copy').addEventListener('click', function () {
+    var button = this;
+    var done = function () {
+      button.textContent = 'Copied';
+      setTimeout(function () { button.textContent = 'Copy'; }, 1600);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(feedUrl).then(done, fallback);
+    } else {
+      fallback();
+    }
+    // Older browsers, and any case where the clipboard API is blocked.
+    function fallback() {
+      var range = document.createRange();
+      range.selectNodeContents(feedEl);
+      var selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      try { document.execCommand('copy'); done(); } catch (e) { /* user copies manually */ }
+    }
+  });
+</script>
+</body>
+</html>

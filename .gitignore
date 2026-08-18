@@ -1,0 +1,17 @@
+# Secrets - the webhook URL is a credential
+.env
+
+# Runtime state and caches
+data/
+.cache/
+*.tmp
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# Generated site output
+public/
