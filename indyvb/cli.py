@@ -246,10 +246,12 @@ def cmd_groupme_groups(args) -> int:
     added, total = group_list.merge(discovered)
 
     print(f"Groups visible to this token ({len(discovered)}):\n")
-    width = max((len(g.name) for g in group_list.groups), default=10)
-    for group in sorted(group_list.groups, key=lambda g: g.name.lower()):
+    width = max((len(g.label) for g in group_list.groups), default=10)
+    for group in sorted(group_list.groups, key=lambda g: g.label.lower()):
         mark = "[x]" if group.enabled else "[ ]"
-        print(f"  {mark} {group.name:{width}}  {group.id}")
+        # Channels are indented under their parent group.
+        shown = f"  {group.name}" if group.parent else group.name
+        print(f"  {mark} {shown:{width}}  {group.id}")
 
     enabled = group_list.enabled
     print(f"\n{len(enabled)} of {total} monitored.")

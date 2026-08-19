@@ -81,6 +81,13 @@ class MonitoredGroup:
     id: str
     name: str
     enabled: bool = False
+    # Set for subgroups (GroupMe's channels/topics), which hold their own
+    # events and are enabled independently of their parent.
+    parent: str | None = None
+
+    @property
+    def label(self) -> str:
+        return f"{self.parent} / {self.name}" if self.parent else self.name
 
 
 class GroupList:
@@ -101,7 +108,8 @@ class GroupList:
         raw = json.loads(path.read_text(encoding="utf-8"))
         return cls([
             MonitoredGroup(id=str(g["id"]), name=g.get("name", ""),
-                           enabled=bool(g.get("enabled", False)))
+                           enabled=bool(g.get("enabled", False)),
+                           parent=g.get("parent"))
             for g in raw.get("groups", [])
         ])
 
@@ -109,8 +117,9 @@ class GroupList:
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
         payload = {"groups": [
-            {"id": g.id, "name": g.name, "enabled": g.enabled}
-            for g in sorted(self.groups, key=lambda g: g.name.lower())
+            {"id": g.id, "name": g.name, "enabled": g.enabled,
+             **({"parent": g.parent} if g.parent else {})}
+            for g in sorted(self.groups, key=lambda g: g.label.lower())
         ]}
         path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
         return path
@@ -127,8 +136,10 @@ class GroupList:
             existing = by_id.get(group.id)
             if existing:
                 existing.name = group.name or existing.name
+                existing.parent = group.parent or existing.parent
             else:
-                by_id[group.id] = MonitoredGroup(group.id, group.name, enabled=False)
+                by_id[group.id] = MonitoredGroup(
+                    group.id, group.name, enabled=False, parent=group.parent)
                 added += 1
         self.groups = list(by_id.values())
         return added, len(self.groups)
@@ -176,8 +187,13 @@ class GroupMeClient:
             )
         return (payload or {}).get("response")
 
-    def list_groups(self) -> list[MonitoredGroup]:
-        """Every group the token can see, paged until exhausted."""
+    def list_groups(self, include_subgroups: bool = True) -> list[MonitoredGroup]:
+        """Every group the token can see, plus their subgroups.
+
+        GroupMe subgroups (shown as channels or topics in the app) hold their
+        own calendar events under their own conversation id, so they have to be
+        discovered separately or their events are invisible.
+        """
         found: list[MonitoredGroup] = []
         page = 1
         while True:
@@ -185,11 +201,34 @@ class GroupMeClient:
                 "page": page, "per_page": GROUP_PAGE_SIZE, "omit": "memberships",
             }) or []
             for group in batch:
-                found.append(MonitoredGroup(
-                    id=str(group.get("id")), name=clean(group.get("name"))))
+                parent_id = str(group.get("id"))
+                parent_name = clean(group.get("name"))
+                found.append(MonitoredGroup(id=parent_id, name=parent_name))
+                # children_count avoids a pointless request for the many
+                # groups that have no channels at all.
+                if include_subgroups and group.get("children_count"):
+                    found.extend(self.list_subgroups(parent_id, parent_name))
             if len(batch) < GROUP_PAGE_SIZE:
                 return found
             page += 1
+
+    def list_subgroups(self, group_id: str, parent_name: str = "") -> list[MonitoredGroup]:
+        """Channels beneath one group. Failure here is not fatal."""
+        try:
+            batch = self.get(f"/groups/{group_id}/subgroups",
+                             {"per_page": GROUP_PAGE_SIZE}) or []
+        except GroupMeError as exc:
+            log.warning("could not list channels for %s: %s", parent_name or group_id, exc)
+            return []
+        return [
+            MonitoredGroup(
+                id=str(sub.get("id") or sub.get("group_id")),
+                name=clean(sub.get("name") or sub.get("topic")),
+                parent=parent_name or None,
+            )
+            for sub in batch
+            if sub.get("id") or sub.get("group_id")
+        ]
 
     def list_events(self, group_id: str, since: datetime | None = None) -> list[dict]:
         since = since or datetime.now(timezone.utc)
@@ -243,7 +282,7 @@ class GroupMeEvents(Source):
         events: list[Event] = []
         for group in enabled:
             raw = client.list_events(group.id)
-            log.info("groupme %s (%s): %d events", group.name, group.id, len(raw))
+            log.info("groupme %s (%s): %d events", group.label, group.id, len(raw))
             for item in raw:
                 event = self.parse_event(item, group)
                 if event:
@@ -299,7 +338,7 @@ class GroupMeEvents(Source):
 
         return Event(
             source=self.slug,
-            source_name=f"{self.name} - {group.name}" if group and group.name else self.name,
+            source_name=f"{self.name} - {group.label}" if group and group.name else self.name,
             kind=self.event_kind,
             source_id=str(event_id),
             name=name,

@@ -302,3 +302,71 @@ class TestRealWorldShape:
     def test_offset_timestamps_parse(self, open_play):
         assert open_play.start_date == date(2026, 9, 25)
         assert open_play.times == "7:00 PM - 11:00 PM"
+
+
+class TestSubgroups:
+    """GroupMe channels hold their own events under their own conversation id."""
+
+    def test_channels_are_discovered_under_their_parent(self):
+        fetcher = StubFetcher([
+            {"response": [{"id": "1", "name": "Volleyball", "children_count": 2}]},
+            {"response": [{"id": "10", "name": "Outside Events"},
+                          {"id": "11", "name": "Off-topic"}]},
+        ])
+        groups = GroupMeClient("t", fetcher).list_groups()
+
+        assert [g.id for g in groups] == ["1", "10", "11"]
+        assert groups[1].parent == "Volleyball"
+        assert groups[1].label == "Volleyball / Outside Events"
+        assert "/groups/1/subgroups" in fetcher.calls[1]["url"]
+
+    def test_no_request_when_a_group_has_no_channels(self):
+        """children_count avoids a pointless call for most groups."""
+        fetcher = StubFetcher([
+            {"response": [{"id": "1", "name": "Plain", "children_count": 0}]},
+        ])
+        groups = GroupMeClient("t", fetcher).list_groups()
+        assert len(groups) == 1
+        assert len(fetcher.calls) == 1
+
+    def test_channel_listing_failure_is_not_fatal(self):
+        """Losing channels must not lose the parent groups too."""
+        class Flaky(StubFetcher):
+            def get_json(self, url, headers=None, log_url=None, **kwargs):
+                if "subgroups" in url:
+                    response = requests.Response()
+                    response.status_code = 500
+                    raise requests.HTTPError(response=response)
+                return super().get_json(url, headers, log_url, **kwargs)
+
+        fetcher = Flaky([{"response": [{"id": "1", "name": "V", "children_count": 3}]}])
+        groups = GroupMeClient("t", fetcher).list_groups()
+        assert [g.id for g in groups] == ["1"]
+
+    def test_channels_are_enabled_independently(self, tmp_path):
+        """A channel is opted in separately from its parent."""
+        path = tmp_path / "groups.json"
+        GroupList([
+            MonitoredGroup("1", "Volleyball", enabled=False),
+            MonitoredGroup("10", "Outside Events", enabled=True, parent="Volleyball"),
+        ]).save(path)
+        assert [g.id for g in GroupList.load(path).enabled] == ["10"]
+
+    def test_parent_survives_a_round_trip(self, tmp_path):
+        path = tmp_path / "groups.json"
+        GroupList([MonitoredGroup("10", "Chan", enabled=True, parent="Parent")]).save(path)
+        assert GroupList.load(path).groups[0].parent == "Parent"
+
+    def test_merge_keeps_channel_choices(self):
+        group_list = GroupList([
+            MonitoredGroup("10", "Outside Events", enabled=True, parent="Volleyball")])
+        group_list.merge([
+            MonitoredGroup("1", "Volleyball"),
+            MonitoredGroup("10", "Outside Events", parent="Volleyball"),
+        ])
+        assert [g.id for g in group_list.enabled] == ["10"]
+
+    def test_source_name_shows_the_channel(self, raw_events):
+        channel = MonitoredGroup("10", "Outside Events", True, parent="Volleyball")
+        event = GroupMeEvents(token="t").parse_event(raw_events[0], channel)
+        assert event.source_name == "GroupMe - Volleyball / Outside Events"

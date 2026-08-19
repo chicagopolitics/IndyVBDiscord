@@ -68,6 +68,18 @@ groups are always written disabled**, so seeding can never opt you in by
 accident. Set `"enabled": true` on the ones you want, and re-run `--save` later
 to pick up newly joined groups without losing your choices.
 
+GroupMe channels (subgroups) are listed too, indented under their parent:
+
+```
+  [x] The Academy Volleyball Fridays    96686038
+  [ ]   Outside Volleyball Events       108507748
+  [ ]   Off-topic Chat                  108507756
+```
+
+Each channel holds its own calendar events under its own conversation id, so a
+channel is **enabled independently of its parent** - enabling a group does not
+pull in its channels, and a channel can be monitored without its parent.
+
 The file lives under `data/`, which is gitignored, so private group names and
 ids stay out of the repo.
 
