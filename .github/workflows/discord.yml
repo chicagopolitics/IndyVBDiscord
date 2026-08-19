@@ -1,0 +1,74 @@
+name: Post new listings to Discord
+
+on:
+  # 13:00 UTC is 9am Eastern in summer, 8am in winter. Cron here is always UTC
+  # and GitHub often delays scheduled runs, which is fine for daily checks.
+  schedule:
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview only - post nothing and record nothing"
+        type: boolean
+        default: false
+
+# Needed to commit the updated state file back to the repo.
+permissions:
+  contents: write
+
+# Two overlapping runs would both see the same listings as new and post them
+# twice, so queue instead of running in parallel.
+concurrency:
+  group: discord-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Post new and changed listings
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_USERNAME: ${{ vars.DISCORD_USERNAME }}
+        # GroupMe is deliberately excluded: its token can read every group and
+        # DM on the account, which is not something to hold as a CI secret.
+        # Run `post --source groupme` locally instead.
+        #
+        # Without --allow-partial the run aborts if any source fails, so a
+        # transient outage never records state for listings that never posted.
+        # The next day's run picks them up.
+        run: |
+          python -m indyvb.cli post \
+            --new-only \
+            --forum \
+            --source cca \
+            --source cca-tournaments \
+            --source ibeach-leagues \
+            --source ibeach-tournaments \
+            ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      - name: Commit updated state
+        if: ${{ !inputs.dry_run }}
+        run: |
+          # git status, not git diff: on the very first run the state file is
+          # untracked, and git diff reports nothing for untracked files.
+          if [ -z "$(git status --porcelain -- data/seen.json)" ]; then
+            echo "No new listings; state unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/seen.json
+          # [skip ci] stops this commit retriggering other push-based workflows.
+          git commit -m "Record posted listings [skip ci]"
+          git push

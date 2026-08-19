@@ -61,7 +61,13 @@ def apply_filters(events: list[Event], args, today: date | None = None) -> list[
         result = [e for e in result
                   if needle in e.name.lower()
                   or needle in (e.location or "").lower()]
-    return sorted(result, key=lambda e: e.sort_key())
+
+    result = sorted(result, key=lambda e: e.sort_key())
+    # Applied after sorting, so --limit takes the soonest N rather than an
+    # arbitrary N. Useful for a controlled first post.
+    if getattr(args, "limit", None):
+        result = result[:args.limit]
+    return result
 
 
 def _report_errors(errors: dict[str, str]) -> None:
@@ -475,6 +481,9 @@ def build_parser() -> argparse.ArgumentParser:
                         help="keep events that have already finished")
     common.add_argument("--search", metavar="TEXT",
                         help="filter by text in the name or location")
+    common.add_argument("--limit", type=int, metavar="N",
+                        help="only the soonest N events (applied after "
+                             "sorting); useful for a single test post")
     common.add_argument("--cache", metavar="DIR",
                         help="cache HTTP responses in DIR (useful offline)")
     common.add_argument("--groups-config", default=str(DEFAULT_GROUPS_CONFIG),

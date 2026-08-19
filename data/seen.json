@@ -1,0 +1,383 @@
+{
+  "updated_at": "2026-08-18T13:28:15+00:00",
+  "events": {
+    "ibeach-leagues:league:105608": {
+      "fingerprint": "f33983a7b522aaf1",
+      "name": "Fall 2026 Tuesday \"Cali\" Coed 2v2 Levels B/BB Intermediate",
+      "start_date": "2026-08-18",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105607": {
+      "fingerprint": "27d6d8ab1c579893",
+      "name": "Fall 2026 Tuesday Coed 4v4 Level B (beginner intermediate) & BB (upper intermediate)",
+      "start_date": "2026-08-18",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105606": {
+      "fingerprint": "5d6d30e109d35fd4",
+      "name": "Fall 2026 Tuesday Coed 6v6 Rec/Level B (beginner intermediate)",
+      "start_date": "2026-08-18",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:106297": {
+      "fingerprint": "392112cf31d7c315",
+      "name": "LATE NIGHT Fall 2026 Tuesday Coed 6v6 Rec/Level B (beginner intermediate)",
+      "start_date": "2026-08-18",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102721": {
+      "fingerprint": "147e5a9363cf0d47",
+      "name": "Fall 2026 Wednesday Indoor Volleyball 6's League - FBA",
+      "start_date": "2026-08-19",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105615": {
+      "fingerprint": "562c0eda7b4f0663",
+      "name": "Fall 2026 Thursday Coed 2v2 A (competitive)",
+      "start_date": "2026-08-20",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105614": {
+      "fingerprint": "bfcac54171e6761e",
+      "name": "Fall 2026 Thursday Coed 2v2 Level BB (upper intermediate)",
+      "start_date": "2026-08-20",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105613": {
+      "fingerprint": "dcbd6bb34ccb2b39",
+      "name": "Fall 2026 Thursday Coed 4v4 A (Competitive)",
+      "start_date": "2026-08-20",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105612": {
+      "fingerprint": "89849ad8e9dc679e",
+      "name": "Fall 2026 Thursday Coed 4v4 B/BB (intermediate)",
+      "start_date": "2026-08-20",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105611": {
+      "fingerprint": "b5d5179d31c26b1f",
+      "name": "Fall 2026 Thursday Coed 6v6 Level B/BB (intermediate)",
+      "start_date": "2026-08-20",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca-tournaments:tournament:102365": {
+      "fingerprint": "03b7498b7ed8769e",
+      "name": "AUGUST 2026 COED 6'S INDOOR VOLLEYBALL TOURNAMENT",
+      "start_date": "2026-08-21",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:103203": {
+      "fingerprint": "c3780087a9a63e63",
+      "name": "Friday Adult Open Play",
+      "start_date": "2026-08-21",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105619": {
+      "fingerprint": "707585a76526a263",
+      "name": "Fall 2026 Sunday Coed 2v2 Level B",
+      "start_date": "2026-08-23",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105617": {
+      "fingerprint": "a065322b4791e53b",
+      "name": "Fall 2026 Sunday Coed 4v4 Level B/BB(beginner intermediate)",
+      "start_date": "2026-08-23",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105616": {
+      "fingerprint": "385a237712258ed4",
+      "name": "Fall 2026 Sunday Coed 6v6 Levels Recreational & B (beginner intermediate) & BB (upper intermediate)",
+      "start_date": "2026-08-23",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105618": {
+      "fingerprint": "fbc28bc8b5c0ed2b",
+      "name": "Fall 2026 Sunday Women's 4v4 Level B/BB (beginner intermediate/upper intermediate)",
+      "start_date": "2026-08-23",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105699": {
+      "fingerprint": "0c708d18ad5fc12a",
+      "name": "NEW Fall 2026 Sunday Men's 2v2 Level B/BB",
+      "start_date": "2026-08-23",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:40176": {
+      "fingerprint": "6cf214a87474e918",
+      "name": "Bluefire BYOP Quads Lottery",
+      "start_date": "2026-08-23",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105623": {
+      "fingerprint": "bc49c98c1a746400",
+      "name": "Fall 2026 Monday \"Cali\" Coed 2v2 Level BB/A (competitive/upper intermediate)",
+      "start_date": "2026-08-24",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105621": {
+      "fingerprint": "ec41d5e7afc0ce2b",
+      "name": "Fall 2026 Monday Coed 4v4 Level B",
+      "start_date": "2026-08-24",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105622": {
+      "fingerprint": "3060544f1edf1916",
+      "name": "Fall 2026 Monday Coed 4v4 Level BB/A",
+      "start_date": "2026-08-24",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105620": {
+      "fingerprint": "76423fe9c420d578",
+      "name": "Fall 2026 Monday Coed 6v6 Level Recreational/B & BB",
+      "start_date": "2026-08-24",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:101595": {
+      "fingerprint": "c65d23ebd242af3c",
+      "name": "Fall 2026 Wednesday Downtown Indoor Volleyball 6's League - Fountain Square",
+      "start_date": "2026-08-26",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105610": {
+      "fingerprint": "5eaa05fe4c9ab755",
+      "name": "Fall 2026 Wednesday Coed 4v4 Level B/BB",
+      "start_date": "2026-08-26",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:105609": {
+      "fingerprint": "2def0775f2ea806a",
+      "name": "Fall 2026 Wednesday Reverse Coed 4v4 Level A/BB",
+      "start_date": "2026-08-26",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:103204": {
+      "fingerprint": "a027e901c07482f9",
+      "name": "Friday Adult Open Play",
+      "start_date": "2026-08-28",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:37012": {
+      "fingerprint": "90e959a9c0545950",
+      "name": "AVP Open: Mens 2s and Women 2s",
+      "start_date": "2026-08-29",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:106308": {
+      "fingerprint": "fbc21317d7d5d362",
+      "name": "Fall 2026 Wednesday Men's Work Up Competitive",
+      "start_date": "2026-09-02",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-leagues:league:106298": {
+      "fingerprint": "ef1656b7ab01547f",
+      "name": "Fall 2026 Wednesday Women's Work Up Competitive",
+      "start_date": "2026-09-02",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:40177": {
+      "fingerprint": "41317d1587081092",
+      "name": "Bluefire Beach Campfire Party",
+      "start_date": "2026-09-06",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102725": {
+      "fingerprint": "ef8ea84fd911363e",
+      "name": "Fall 2026 Thursday Downtown Indoor Volleyball 6's League - Fountain Square",
+      "start_date": "2026-09-10",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:40178": {
+      "fingerprint": "06431d282d62c3ab",
+      "name": "Bluefire Quads Classic",
+      "start_date": "2026-09-12",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:40742": {
+      "fingerprint": "833ecdcf153c47ce",
+      "name": "2026 Tattoo Tourney! mens/women 2v2 sign up solo '",
+      "start_date": "2026-09-19",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:37013": {
+      "fingerprint": "0f11d4d8c9b2c532",
+      "name": "AVP A and B: Mens 2s and Women 2s",
+      "start_date": "2026-09-26",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:37414": {
+      "fingerprint": "5ec738eb300fa907",
+      "name": "ADULT COED Reverse 4v4 PINK OUT Oct 4, 2026",
+      "start_date": "2026-10-04",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:106341": {
+      "fingerprint": "e23a1afe7e111295",
+      "name": "Late Fall 2026 Monday Downtown Indoor Volleyball 6's League - Fountain Square",
+      "start_date": "2026-10-05",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:40179": {
+      "fingerprint": "038150ab5dbf5c3e",
+      "name": "Bluefire Quads Classic - BYOP Lottery",
+      "start_date": "2026-10-10",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:106342": {
+      "fingerprint": "4967af263af2096f",
+      "name": "Late Fall 2026 Sunday Downtown Indoor Volleyball 6's League - Fountain Square",
+      "start_date": "2026-10-11",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:106329": {
+      "fingerprint": "05ef7d13ca722333",
+      "name": "Late Fall 2026 Wednesday Indoor Volleyball 6's League - FBA",
+      "start_date": "2026-10-14",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:40180": {
+      "fingerprint": "1f867df13685bdbe",
+      "name": "Bluefire Mens/Womens Doubles",
+      "start_date": "2026-10-18",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102736": {
+      "fingerprint": "9b6ac49b31a1c122",
+      "name": "Late Fall 2026 Wednesday Indoor Volleyball 6's League - Academy Westfield",
+      "start_date": "2026-10-21",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102728": {
+      "fingerprint": "f01910be45d88182",
+      "name": "Late Fall 2026 Wednesday Indoor Volleyball 6's League - Pro Net Sports - Fishers",
+      "start_date": "2026-10-21",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102722": {
+      "fingerprint": "acfa97c808d5d1ff",
+      "name": "Late Fall 2026 Thursday Indoor Volleyball 6's League - FBA",
+      "start_date": "2026-10-22",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102729": {
+      "fingerprint": "0790666be3c8551f",
+      "name": "Late Fall 2026 Thursday Indoor Volleyball 6's League - Pro Net Sports/Fishers YMCA - Fishers",
+      "start_date": "2026-10-22",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102984": {
+      "fingerprint": "f8128b64924398a2",
+      "name": "Late Fall 2026 Thursday Volleyball 6's League - HRH YMCA (AVON)",
+      "start_date": "2026-10-22",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca-tournaments:tournament:102366": {
+      "fingerprint": "da01bff14dc0a726",
+      "name": "OCTOBER 2026 COED 6'S INDOOR VOLLEYBALL TOURNAMENT",
+      "start_date": "2026-10-23",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:40181": {
+      "fingerprint": "014c26746b4484ba",
+      "name": "Bluefire Halloween Costume Contest",
+      "start_date": "2026-10-24",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102733": {
+      "fingerprint": "4e8bdd2d1c238ad7",
+      "name": "Late Fall 2026 Sunday Indoor Volleyball 6's League - Fishers Locations",
+      "start_date": "2026-10-25",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102732": {
+      "fingerprint": "853edb28a0e3658e",
+      "name": "Late Fall 2026 Sunday Indoor Volleyball 6's League - Jordan YMCA",
+      "start_date": "2026-10-25",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102731": {
+      "fingerprint": "ac6dc94eb7bac4b1",
+      "name": "Late Fall 2026 Sunday Volleyball 6's League - HRH YMCA (AVON)",
+      "start_date": "2026-10-25",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102735": {
+      "fingerprint": "98731625938329bb",
+      "name": "Late Fall 2026 Monday Indoor Volleyball 6's League - Academy Westfield",
+      "start_date": "2026-10-26",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102726": {
+      "fingerprint": "4f5e337e33adf6dd",
+      "name": "Late Fall 2026 Monday Indoor Volleyball 6's League - Pro Net Sports - Fishers",
+      "start_date": "2026-10-26",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102746": {
+      "fingerprint": "afd73f8df5c89828",
+      "name": "Late Fall 2026 Monday Indoor Volleyball 6's League - The Ark (Greenwood)",
+      "start_date": "2026-10-26",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102739": {
+      "fingerprint": "809910a1ee539dac",
+      "name": "Late Fall 2026 Tuesday Indoor Volleyball 6's League - JCC",
+      "start_date": "2026-10-27",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102737": {
+      "fingerprint": "b58e9f2dbb008348",
+      "name": "Late Fall 2026 Tuesday Indoor Volleyball 6's League - Jordan YMCA",
+      "start_date": "2026-10-27",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca:league:102727": {
+      "fingerprint": "84518d3bf6b83786",
+      "name": "Late Fall 2026 Tuesday Indoor Volleyball 6's League - Pro Net Sports - Fishers",
+      "start_date": "2026-10-27",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:40312": {
+      "fingerprint": "5c055922170e03bb",
+      "name": "Bluefire Quads Classic '26",
+      "start_date": "2026-11-07",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca-tournaments:tournament:102367": {
+      "fingerprint": "217d5b24b1521555",
+      "name": "NOVEMBER 2026 COED 6'S INDOOR VOLLEYBALL TOURNAMENT",
+      "start_date": "2026-11-13",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:40313": {
+      "fingerprint": "3607d070f8e39c55",
+      "name": "Bluefire COED Reverse 4v4",
+      "start_date": "2026-11-15",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:40314": {
+      "fingerprint": "8c48f7ac59e43746",
+      "name": "Bluefire Quads Classic",
+      "start_date": "2026-11-21",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "cca-tournaments:tournament:102368": {
+      "fingerprint": "509f65c2b67f20bb",
+      "name": "DECEMBER 2026 COED 6'S INDOOR VOLLEYBALL TOURNAMENT",
+      "start_date": "2026-12-04",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:40315": {
+      "fingerprint": "8a3418d9cca2f42f",
+      "name": "Bluefire Winter Open",
+      "start_date": "2026-12-05",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    },
+    "ibeach-tournaments:tournament:40316": {
+      "fingerprint": "3c0f0414c3e14a59",
+      "name": "Bluefire New Years Eve Party",
+      "start_date": "2026-12-19",
+      "last_seen": "2026-08-18T13:28:15+00:00"
+    }
+  }
+}

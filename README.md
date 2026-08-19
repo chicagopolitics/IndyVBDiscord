@@ -328,6 +328,72 @@ erroring. Use `--within 60` to keep well under the cap.
 Always preview with `--dry-run` first; it reports exactly what would change
 without touching the server.
 
+## Running for real
+
+### Going live
+
+1. Retire any state from a previous server, or nothing will post - every
+   listing already looks announced:
+
+   ```bash
+   mv data/seen.json data/seen.pilot.json
+   ```
+
+2. Seed the forum with a deliberately narrow first batch:
+
+   ```bash
+   .venv/Scripts/python.exe -m indyvb.cli post --new-only --within 60 --open-only
+   ```
+
+   State records only what actually posts, so filtered-out listings are not
+   lost - later unfiltered runs pick them up.
+
+### Two state files, on purpose
+
+| Runs | Sources | State file | Tracked? |
+|---|---|---|---|
+| GitHub Actions, daily | CCA + iBeach | `data/seen.json` | yes, committed by the job |
+| Local, on demand | GroupMe | `data/seen.groupme.json` | no, gitignored |
+
+The uid namespaces never overlap, so splitting them is safe. The split exists
+because this repo is public: GroupMe event names come from private groups and
+must not be committed, whereas the web listings are already public.
+
+Run the GroupMe half locally whenever you want:
+
+```bash
+.venv/Scripts/python.exe -m indyvb.cli post --new-only --source groupme --state data/seen.groupme.json
+```
+
+### The scheduled job
+
+`.github/workflows/discord.yml` runs daily at 13:00 UTC and posts new or
+changed listings from the four web sources.
+
+It needs exactly one repository secret, **`DISCORD_WEBHOOK_URL`**
+(*Settings -> Secrets and variables -> Actions*). Optionally set a repository
+*variable* `DISCORD_USERNAME` to control the posting name. No bot token is
+needed: the bot is only used by `forum-tags` and `discord-events`, neither of
+which runs in CI.
+
+`data/forum_tags.json` is committed so the job knows which tag is which. It
+holds only tag names and ids - no credential.
+
+GroupMe is deliberately excluded from CI. Its token can read every group and DM
+on the account, which is not something worth holding as a CI secret for a
+source that produces a handful of events.
+
+Two safety properties worth knowing:
+
+- **A failed source aborts the run.** Without `--allow-partial`, one broken
+  site means nothing is posted and no state is recorded, so those listings are
+  announced properly on the next run instead of being silently skipped.
+- **Concurrency is queued, not cancelled.** Two overlapping runs would both see
+  the same listings as new and post duplicates.
+
+Use *Actions -> Post new listings to Discord -> Run workflow* to trigger it by
+hand; it has a **dry run** checkbox that posts and records nothing.
+
 ## Scheduling
 
 The CLI is the whole tool, so any scheduler works. Two straightforward options:

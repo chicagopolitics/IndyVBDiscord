@@ -1,10 +1,19 @@
 # Secrets - the webhook URL is a credential
 .env
 
-# Runtime state and caches
-data/
+# Runtime state and caches.
+# data/* rather than data/ so specific files can be re-included below;
+# git cannot re-include anything inside an excluded directory.
+data/*
 .cache/
 *.tmp
+
+# Committed so the scheduled Discord job can carry state between runs, and
+# so it knows which forum tag is which. Neither contains a credential.
+# GroupMe keeps its own state file, which stays ignored: this repo is
+# public and those event names come from private groups.
+!data/seen.json
+!data/forum_tags.json
 
 # Python
 .venv/

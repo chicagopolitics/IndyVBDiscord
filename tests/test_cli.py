@@ -21,6 +21,20 @@ def make_event(source_id="1", **kwargs) -> Event:
     return Event(**defaults)
 
 
+@pytest.fixture(autouse=True)
+def isolated_env(monkeypatch):
+    """Keep a developer's real .env out of the tests.
+
+    `cli.main` calls load_dotenv(), so without this a local DISCORD_FORUM=1
+    would silently switch every post test into forum mode.
+    """
+    for key in ("DISCORD_FORUM", "DISCORD_WEBHOOK_URL", "DISCORD_BOT_TOKEN",
+                "DISCORD_GUILD_ID", "DISCORD_USERNAME", "DISCORD_AVATAR_URL",
+                "GROUPME_ACCESS_TOKEN"):
+        monkeypatch.delenv(key, raising=False)
+    monkeypatch.setattr(cli, "load_dotenv", lambda *a, **k: None)
+
+
 @pytest.fixture
 def stub(monkeypatch):
     """Replace the scrape and the Discord client with controllable stubs."""
@@ -297,3 +311,26 @@ class TestForumPosting:
         run(["post", "--forum", "--dry-run", "--tag-config", tag_file,
              "--state", str(tmp_path / "seen.json")])
         assert forum["threads"] == []
+
+
+class TestLimit:
+    def test_takes_the_soonest_events(self, stub, capsys):
+        """--limit applies after sorting, so it is the next N, not an arbitrary N."""
+        stub["events"] = [
+            make_event("later", start_date=TODAY + timedelta(days=30)),
+            make_event("soonest", start_date=TODAY + timedelta(days=1)),
+            make_event("middle", start_date=TODAY + timedelta(days=10)),
+        ]
+        run(["list", "--limit", "1"])
+        out = capsys.readouterr().out
+        assert "League soonest" in out
+        assert "League middle" not in out and "League later" not in out
+
+    def test_limit_restricts_what_is_posted(self, stub, tmp_path):
+        stub["events"] = [make_event("1"), make_event("2"), make_event("3")]
+        run(["post", "--limit", "1", "--state", str(tmp_path / "seen.json")])
+        assert sum(len(b) for b in stub["sent"]) == 1
+
+    def test_no_limit_keeps_everything(self, stub, capsys):
+        run(["list"])
+        assert "League 1" in capsys.readouterr().out
