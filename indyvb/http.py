@@ -68,14 +68,20 @@ class Fetcher:
         self._last_hit[host] = time.monotonic()
 
     def get_text(self, url: str, *, headers: dict | None = None,
-                 use_cache: bool = True) -> str:
+                 use_cache: bool = True, log_url: str | None = None) -> str:
+        """Fetch a URL as text.
+
+        ``log_url`` replaces the URL in log output, for endpoints that require
+        a credential in the query string.
+        """
+        shown = log_url or url
         path = self._cache_path(url)
         if use_cache and path and path.exists():
-            log.debug("cache hit %s", url)
+            log.debug("cache hit %s", shown)
             return path.read_text(encoding="utf-8")
 
         self._throttle(url)
-        log.info("GET %s", url)
+        log.info("GET %s", shown)
         resp = self.session.get(url, headers=headers or {}, timeout=DEFAULT_TIMEOUT)
         resp.raise_for_status()
         text = resp.text
@@ -84,8 +90,9 @@ class Fetcher:
         return text
 
     def get_json(self, url: str, *, headers: dict | None = None,
-                 use_cache: bool = True):
+                 use_cache: bool = True, log_url: str | None = None):
         import json
         merged = {"Accept": "application/json"}
         merged.update(headers or {})
-        return json.loads(self.get_text(url, headers=merged, use_cache=use_cache))
+        return json.loads(self.get_text(url, headers=merged, use_cache=use_cache,
+                                        log_url=log_url))

@@ -17,6 +17,11 @@ class Source(ABC):
     name: str = ""
     homepage: str = ""
 
+    # Scrapers returning nothing almost always means their markup changed,
+    # so `health` treats it as a failure. Sources that can legitimately be
+    # empty (a quiet week with no events scheduled) set this to True.
+    allow_empty: bool = False
+
     @abstractmethod
     def fetch(self, fetcher: Fetcher) -> list[Event]:
         """Return every listing this source currently advertises."""

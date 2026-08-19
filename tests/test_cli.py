@@ -148,10 +148,13 @@ class TestHealth:
 
     @pytest.fixture
     def fake_registry(self, monkeypatch):
-        def install(result):
+        def install(result, allow_empty=False):
             class FakeSource:
                 slug = "fake"
                 name = "Fake Source"
+
+                def __init__(self):
+                    self.allow_empty = allow_empty
 
                 def safe_fetch(self, fetcher):
                     return result
@@ -170,6 +173,14 @@ class TestHealth:
         fake_registry(([], None))
         assert run(["health"]) == 1
         assert "EMPTY" in capsys.readouterr().out
+
+    def test_empty_is_fine_for_sources_that_allow_it(self, fake_registry, capsys):
+        """GroupMe having nothing scheduled is normal, not a broken parser."""
+        fake_registry(([], None), allow_empty=True)
+        assert run(["health"]) == 0
+        out = capsys.readouterr().out
+        assert "EMPTY" not in out
+        assert "no events currently scheduled" in out
 
     def test_fetch_error_is_a_failure(self, fake_registry, capsys):
         fake_registry(([], "HTTPError: 503"))

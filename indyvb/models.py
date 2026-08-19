@@ -9,7 +9,9 @@ from typing import Any, Literal
 
 from .locations import Venue
 
-Kind = Literal["league", "tournament"]
+# "event" covers one-off sessions (e.g. GroupMe pickup games) that are
+# neither a multi-week league nor a bracketed tournament.
+Kind = Literal["league", "tournament", "event"]
 
 # Fields that, when changed, mean the listing is meaningfully different and
 # worth re-announcing. Cosmetic fields (description, tags) are deliberately

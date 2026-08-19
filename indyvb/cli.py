@@ -15,6 +15,8 @@ from . import sources as source_registry
 from .discord_events import DiscordEventError, ScheduledEventSync
 from .http import Fetcher
 from .ics import DEFAULT_CALENDAR_NAME, to_ics
+from .sources.groupme import (DEFAULT_GROUPS_CONFIG, GroupList, GroupMeClient,
+                              GroupMeError)
 from .models import Event
 from .publish import (ConsoleForumPublisher, ConsolePublisher, ForumWebhookPublisher,
                       PublishError, WebhookPublisher, publish_all)
@@ -102,8 +104,14 @@ def cmd_health(args) -> int:
             state, detail = "FAIL", error
             failures += 1
         elif not events:
-            state, detail = "EMPTY", "parsed 0 events - the page markup may have changed"
-            failures += 1
+            if source.allow_empty:
+                # Nothing scheduled is a normal state for this source, not a
+                # sign that anything broke.
+                state, detail = "OK", "no events currently scheduled"
+            else:
+                state = "EMPTY"
+                detail = "parsed 0 events - the page markup may have changed"
+                failures += 1
         else:
             dated = sum(1 for e in events if e.start_date)
             upcoming = sum(1 for e in events if e.is_upcoming())
@@ -213,6 +221,48 @@ def cmd_discord_events(args) -> int:
             print(f"  - {name}  ({reason})")
     elif result.skipped:
         print(f"  ({len(result.skipped)} skipped; -v to list them)")
+    return 0
+
+
+def cmd_groupme_groups(args) -> int:
+    """List GroupMe groups and maintain the monitored allowlist."""
+    fetcher = _make_fetcher(args)
+    try:
+        client = GroupMeClient(os.getenv("GROUPME_ACCESS_TOKEN", ""), fetcher)
+        discovered = client.list_groups()
+    except GroupMeError as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 2
+
+    try:
+        group_list = GroupList.load(args.groups_config)
+    except FileNotFoundError:
+        group_list = GroupList()
+    except json.JSONDecodeError as exc:
+        print(f"Error: {args.groups_config} is not valid JSON ({exc}).",
+              file=sys.stderr)
+        return 2
+
+    added, total = group_list.merge(discovered)
+
+    print(f"Groups visible to this token ({len(discovered)}):\n")
+    width = max((len(g.name) for g in group_list.groups), default=10)
+    for group in sorted(group_list.groups, key=lambda g: g.name.lower()):
+        mark = "[x]" if group.enabled else "[ ]"
+        print(f"  {mark} {group.name:{width}}  {group.id}")
+
+    enabled = group_list.enabled
+    print(f"\n{len(enabled)} of {total} monitored.")
+
+    if args.save:
+        path = group_list.save(args.groups_config)
+        print(f"Saved to {path}"
+              + (f" ({added} newly discovered, left disabled)" if added else ""))
+        if not enabled:
+            print('\nNothing is monitored yet. Set "enabled": true on the groups '
+                  'you want, then re-run with --save to confirm.')
+    else:
+        print("\nRe-run with --save to write the list.")
     return 0
 
 
@@ -413,7 +463,7 @@ def build_parser() -> argparse.ArgumentParser:
     common = argparse.ArgumentParser(add_help=False, parents=[base])
     common.add_argument("-s", "--source", action="append",
                         help="limit to a source slug (repeatable); default is all")
-    common.add_argument("--kind", choices=["league", "tournament"],
+    common.add_argument("--kind", choices=["league", "tournament", "event"],
                         help="only leagues or only tournaments")
     common.add_argument("--within", type=int, metavar="DAYS",
                         help="only events starting within DAYS days")
@@ -425,6 +475,10 @@ def build_parser() -> argparse.ArgumentParser:
                         help="filter by text in the name or location")
     common.add_argument("--cache", metavar="DIR",
                         help="cache HTTP responses in DIR (useful offline)")
+    common.add_argument("--groups-config", default=str(DEFAULT_GROUPS_CONFIG),
+                        metavar="FILE",
+                        help=f"GroupMe monitored-group allowlist "
+                             f"(default {DEFAULT_GROUPS_CONFIG})")
     common.add_argument("--tag-config", default=str(DEFAULT_TAG_CONFIG),
                         metavar="FILE",
                         help=f"forum tag name-to-id mapping "
@@ -458,6 +512,12 @@ def build_parser() -> argparse.ArgumentParser:
                    help="refuse to write if fewer than N events were found; "
                         "guards against publishing an empty calendar")
     p.set_defaults(func=cmd_calendar)
+
+    p = sub.add_parser("groupme-groups", parents=[common],
+                       help="list GroupMe groups and maintain the allowlist")
+    p.add_argument("--save", action="store_true",
+                   help="write the allowlist; new groups are added disabled")
+    p.set_defaults(func=cmd_groupme_groups)
 
     p = sub.add_parser("forum-tags", parents=[common],
                        help="list the forum tag ids and save the mapping")

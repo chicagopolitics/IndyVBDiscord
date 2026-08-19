@@ -11,6 +11,7 @@ publishes them to a Discord channel.
 | `cca-tournaments` | CCA one-night tournaments | `ccasports.com/page/Indoor-Volleyball-Tournaments` |
 | `ibeach-leagues` | iBeach leagues (2s / 4s / 6s) | `widget.leaguelab.com/v1/ibeachvolleyball/league-listing` |
 | `ibeach-tournaments` | iBeach beach tournaments | `api-v8.volleyballlife.com/tournament/summaries` |
+| `groupme` | Calendar events in chosen GroupMe groups | `api.groupme.com/v3/conversations/:id/events/list` |
 
 Three things worth knowing about why these particular endpoints:
 
@@ -44,6 +45,52 @@ address string when building the map link.
 The directory is loaded lazily, once per run, and a failure to load it is
 logged and ignored - venue detail is an enhancement, so losing it degrades the
 output rather than breaking the scrape.
+
+## GroupMe events
+
+GroupMe groups can hold first-class calendar events (groupme.com/events) with a
+name, start and end time, and a location including coordinates. Those are
+structured records, so this is an ordinary source - no text extraction, and
+**chat messages are never read**.
+
+### Scope
+
+Only groups explicitly enabled in `data/groupme_groups.json` are ever queried.
+This matters: the access token can read *every group and DM on your account*, so
+the allowlist is what keeps the tool scoped to what you chose.
+
+```bash
+.venv/Scripts/python.exe -m indyvb.cli groupme-groups --save
+```
+
+That lists every group the token can see and writes the file. **Newly discovered
+groups are always written disabled**, so seeding can never opt you in by
+accident. Set `"enabled": true` on the ones you want, and re-run `--save` later
+to pick up newly joined groups without losing your choices.
+
+The file lives under `data/`, which is gitignored, so private group names and
+ids stay out of the repo.
+
+### Classification
+
+GroupMe events are pickup sessions rather than organised leagues, so they carry
+the **`Open Play`** forum tag - unless the title says "tournament"/"tourney" or
+"league", which wins instead. Surface comes from the venue and title text, which
+is the only place the `Grass` tag ever comes from; neither CCA nor iBeach lists
+grass volleyball.
+
+### Until it is configured
+
+With no token or no group list, the source returns nothing and reports healthy.
+It never errors, because a failing source aborts `post --new-only` - adding
+GroupMe must not break commands that already work.
+
+### Token handling
+
+The token goes in `.env` only. It is sent in the `X-Access-Token` header so it
+never reaches log output or cache filenames; if a 401 forces the documented
+query-string fallback, the logged URL is redacted. Keep this local - do not add
+it to the GitHub Actions workflow.
 
 ## Setup
 

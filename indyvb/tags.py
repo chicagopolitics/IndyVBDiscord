@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from pathlib import Path
 
 from .models import Event
@@ -67,18 +68,42 @@ def surface_tags(event: Event) -> set[str]:
 
     if event.source in _INDOOR_SOURCES:
         found.add("Indoor")
-    # Explicit wording in the listing beats any assumption about the source.
-    if "indoor" in text:
+
+    # Sources with no fixed surface (GroupMe) are classified from the listing
+    # text and venue name instead.
+    if re.search(r"\b(sand|beach)\b", text) or "ibeach" in text:
+        found.add("Sand")
+    if re.search(r"\b(indoor|gym|gymnasium|fieldhouse|ymca)\b", text):
         found.add("Indoor")
 
     return found
+
+
+def kind_tags(event: Event) -> set[str]:
+    """The League / Tournament / Open Play tag for an event.
+
+    Generic events come from GroupMe, where they are pickup sessions unless the
+    title says otherwise. Only the title is checked, because the description and
+    the group name are too noisy to classify on.
+    """
+    if event.kind == "tournament":
+        return {"Tournament"}
+    if event.kind == "league":
+        return {"League"}
+
+    title = (event.name or "").lower()
+    if "tournament" in title or "tourney" in title:
+        return {"Tournament"}
+    if "league" in title:
+        return {"League"}
+    return {"Open Play"}
 
 
 def derive_tags(event: Event) -> list[str]:
     """Tag names for an event, most important first, capped at MAX_TAGS."""
     found: set[str] = set()
 
-    found.add("Tournament" if event.kind == "tournament" else "League")
+    found |= kind_tags(event)
     found |= surface_tags(event)
 
     # Sources normally set play_format, but fall back to reading the name so a
