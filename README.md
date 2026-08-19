@@ -208,12 +208,11 @@ set. Re-run it whenever the forum's tags change.
 
 | Tag | Comes from |
 |---|---|
-| `League` / `Tournament` | the listing kind (always exactly one) |
+| `League` / `Tournament` / `Open Play` | the kind - always exactly one |
 | `Doubles` / `Quads` | play format 2s / 4s (6s has no tag in the vocabulary) |
 | `Sand` / `Indoor` / `Grass` | the playing surface - see below |
 | `Grass` | the word "grass" in the listing |
 | `Reverse Co-Ed` | the word "reverse" in the listing |
-| `Open Play` | the phrase "open play" in the listing |
 
 **Surface means what you play on, not whether there is a roof.** `Indoor`
 means hard court; `Sand` includes indoor sand. This matters locally: iBeach

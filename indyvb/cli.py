@@ -401,6 +401,16 @@ def _post_to_forum(args, store: SeenStore, to_post: list[Event]) -> int:
         print(f"Error: {exc}", file=sys.stderr)
         return 2
 
+    # A tag the forum no longer defines is dropped silently by ids_for, which
+    # would quietly under-tag every affected thread. Renaming a tag in Discord
+    # is exactly how that happens, so say so before posting.
+    unresolvable = sorted({t for e in to_post for t in tag_map.missing(derive_tags(e))})
+    if unresolvable:
+        print(f"Warning: the forum has no tag named {', '.join(unresolvable)}. "
+              f"Those will be missing from the posts.\n"
+              f"Run `forum-tags` to compare, and rename or re-add them.",
+              file=sys.stderr)
+
     # Tags are required by the forum, so a listing we cannot tag would be
     # rejected. Fail before posting anything rather than part way through.
     untaggable = [e for e in to_post if not tag_map.ids_for(derive_tags(e))]

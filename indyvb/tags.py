@@ -25,16 +25,29 @@ MAX_TAGS = 5
 # Canonical vocabulary. Order is the priority used if a post would ever exceed
 # MAX_TAGS: the kind is never dropped, because the forum requires a tag and
 # every event has one.
-SURFACE_TAGS = ("Sand", "Indoor", "Grass")
-KIND_TAGS = ("League", "Tournament")
+# "Hard Court" is the forum's name for what is played on a gym floor; sand
+# includes indoor sand, so the tag cannot be called "Indoor".
+HARD_COURT = "Hard Court"
+
+SURFACE_TAGS = ("Sand", HARD_COURT, "Grass")
+# Open Play is a kind, not a modifier: a drop-in session is not a league, even
+# when the organiser files it as one.
+KIND_TAGS = ("League", "Tournament", "Open Play")
 FORMAT_TAGS = ("Doubles", "Quads")
-MODIFIER_TAGS = ("Reverse Co-Ed", "Open Play")
+MODIFIER_TAGS = ("Reverse Co-Ed",)
 
 TAG_PRIORITY = KIND_TAGS + SURFACE_TAGS + FORMAT_TAGS + MODIFIER_TAGS
 
+# Earlier names for tags, so a rename in the forum does not silently drop a
+# tag. Looked up only when the canonical name is not present.
+TAG_ALIASES = {
+    "hard court": ("Indoor",),
+    "indoor": (HARD_COURT,),
+}
+
 # Sources that only ever play one surface. CCA is hard court; iBeach is sand,
 # including at its indoor sand facility.
-_INDOOR_SOURCES = {"cca", "cca-tournaments"}
+_HARD_COURT_SOURCES = {"cca", "cca-tournaments"}
 _SAND_SOURCES = {"ibeach-leagues", "ibeach-tournaments"}
 
 _GRASS_RE = r"\bgrass\b"
@@ -51,8 +64,8 @@ _HARD_COURT_RE = (
 # new venues turn up - it is the intended place for local knowledge.
 VENUE_SURFACE = {
     "ibeach": "Sand",                    # includes "iBeach Indoor Courts"
-    "academy volleyball club": "Indoor",  # hard court, despite the name
-    "the academy": "Indoor",
+    "academy volleyball club": HARD_COURT,  # hard court, despite the name
+    "the academy": HARD_COURT,
 }
 
 
@@ -86,31 +99,39 @@ def surface_tags(event: Event) -> set[str]:
     # Sources that only ever play one surface.
     if event.source in _SAND_SOURCES:
         return {"Sand"}
-    if event.source in _INDOOR_SOURCES:
-        return {"Indoor"}
+    if event.source in _HARD_COURT_SOURCES:
+        return {HARD_COURT}
 
     # Otherwise read it from the listing. Sand is checked first so that
     # "indoor sand" resolves to Sand rather than to hard court.
     if re.search(_SAND_RE, text):
         return {"Sand"}
     if re.search(_HARD_COURT_RE, text):
-        return {"Indoor"}
+        return {HARD_COURT}
     return set()
 
 
 def kind_tags(event: Event) -> set[str]:
-    """The League / Tournament / Open Play tag for an event.
+    """Exactly one of League / Tournament / Open Play.
 
-    Generic events come from GroupMe, where they are pickup sessions unless the
-    title says otherwise. Only the title is checked, because the description and
-    the group name are too noisy to classify on.
+    The title wins over how the source files the listing: iBeach sells its
+    Friday drop-in sessions through the league system, but "Friday Adult Open
+    Play" is open play, not a league. Only the title is used, because the
+    description and group name are too noisy to classify on.
     """
+    title = (event.name or "").lower()
+
+    # The only title that overrides the source: a drop-in session sold through
+    # a league system is still open play.
+    if "open play" in title or "open gym" in title:
+        return {"Open Play"}
+
     if event.kind == "tournament":
         return {"Tournament"}
     if event.kind == "league":
         return {"League"}
 
-    title = (event.name or "").lower()
+    # Generic events (GroupMe) have no reliable kind, so read the title.
     if "tournament" in title or "tourney" in title:
         return {"Tournament"}
     if "league" in title:
@@ -133,11 +154,8 @@ def derive_tags(event: Event) -> list[str]:
     elif play_format == "4s":
         found.add("Quads")
 
-    text = _text_of(event)
-    if "reverse" in text:
+    if "reverse" in _text_of(event):
         found.add("Reverse Co-Ed")
-    if "open play" in text:
-        found.add("Open Play")
 
     ordered = [t for t in TAG_PRIORITY if t in found]
     if len(ordered) > MAX_TAGS:
@@ -172,11 +190,24 @@ class TagMap:
         path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
         return path
 
+    def _lookup(self, name: str) -> str | None:
+        """Find a tag id, falling back to known earlier names."""
+        key = name.strip().lower()
+        tag_id = self._by_name.get(key)
+        if tag_id:
+            return tag_id
+        for alias in TAG_ALIASES.get(key, ()):
+            tag_id = self._by_name.get(alias.strip().lower())
+            if tag_id:
+                log.info("forum tag %r resolved via alias %r", name, alias)
+                return tag_id
+        return None
+
     def ids_for(self, names: list[str]) -> list[str]:
         """Resolve names to ids, skipping any the forum does not define."""
         ids = []
         for name in names:
-            tag_id = self._by_name.get(name.strip().lower())
+            tag_id = self._lookup(name)
             if tag_id:
                 ids.append(tag_id)
             else:
@@ -184,13 +215,13 @@ class TagMap:
         return ids
 
     def missing(self, names: list[str]) -> list[str]:
-        return [n for n in names if n.strip().lower() not in self._by_name]
+        return [n for n in names if self._lookup(n) is None]
 
     def __len__(self) -> int:
         return len(self._by_name)
 
     def __contains__(self, name: str) -> bool:
-        return name.strip().lower() in self._by_name
+        return self._lookup(name) is not None
 
 
 def tags_for(event: Event, tag_map: TagMap) -> list[str]:

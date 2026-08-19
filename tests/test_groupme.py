@@ -13,7 +13,7 @@ import requests
 
 from indyvb.sources.groupme import (GroupList, GroupMeClient, GroupMeError,
                                     GroupMeEvents, MonitoredGroup)
-from indyvb.tags import derive_tags
+from indyvb.tags import HARD_COURT, derive_tags
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -139,9 +139,9 @@ class TestTagging:
         assert "Tournament" in tags
         assert "Open Play" not in tags
 
-    def test_ymca_reads_as_indoor(self, events):
+    def test_ymca_reads_as_hard_court(self, events):
         event = next(e for e in events if e.name == "Open Gym Weekend")
-        assert "Indoor" in derive_tags(event)
+        assert HARD_COURT in derive_tags(event)
 
     def test_every_event_is_taggable(self, events):
         """The forum requires a tag, so none of these may come back empty."""
@@ -293,7 +293,7 @@ class TestRealWorldShape:
 
     def test_venue_read_from_the_description(self, open_play):
         """No location object, but the description names a known hard court."""
-        assert derive_tags(open_play) == ["Indoor", "Open Play"]
+        assert derive_tags(open_play) == ["Open Play", HARD_COURT]
 
     def test_still_taggable_when_the_venue_is_unrecognised(self):
         """The forum requires a tag, so an unknown venue must still get one."""

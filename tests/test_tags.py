@@ -8,11 +8,11 @@ from indyvb.models import Event
 from indyvb.publish import (MAX_APPLIED_TAGS, MAX_THREAD_NAME,
                             ConsoleForumPublisher, ForumWebhookPublisher,
                             PublishError)
-from indyvb.tags import (MAX_TAGS, TagLookupError, TagMap, derive_tags,
+from indyvb.tags import (HARD_COURT, MAX_TAGS, TagLookupError, TagMap, derive_tags,
                          fetch_available_tags, surface_tags)
 
 ALL_TAGS = {
-    "Sand": "1", "Indoor": "2", "Grass": "3", "Open Play": "4",
+    "Sand": "1", "Hard Court": "2", "Grass": "3", "Open Play": "4",
     "Doubles": "5", "Quads": "6", "Reverse Co-Ed": "7",
     "League": "8", "Tournament": "9",
 }
@@ -68,8 +68,8 @@ class TestModifierTags:
 
 
 class TestSurfaceTags:
-    def test_cca_is_indoor(self):
-        assert surface_tags(make_event(source="cca")) == {"Indoor"}
+    def test_cca_is_hard_court(self):
+        assert surface_tags(make_event(source="cca")) == {HARD_COURT}
 
     def test_ibeach_sand_only_venue(self):
         event = make_event(venues=[Venue(id="1", name="iBeach")])
@@ -90,10 +90,10 @@ class TestSurfaceTags:
         event = make_event(source="cca", name="Summer Grass Doubles")
         assert "Grass" in surface_tags(event)
 
-    def test_indoor_wording_applies_to_non_sand_sources(self):
-        event = make_event(source="other", name="Indoor Winter League",
+    def test_hard_court_wording_applies_to_non_fixed_sources(self):
+        event = make_event(source="other", name="Winter League in the gym",
                            venues=[Venue(id="1", name="Some Gym")])
-        assert "Indoor" in surface_tags(event)
+        assert HARD_COURT in surface_tags(event)
 
     def test_grass_wins_over_the_source_default(self):
         """A grass event at a sand organiser is Grass, not both."""
@@ -115,13 +115,13 @@ class TestSurfaceTags:
         """"The Academy Volleyball Club" is hard court despite the name."""
         event = make_event(source="groupme", name="Adult Open Play",
                            description="Location: The Academy Volleyball Club")
-        assert surface_tags(event) == {"Indoor"}
+        assert surface_tags(event) == {HARD_COURT}
 
     def test_hard_court_signals(self):
         for venue in ["Jordan YMCA", "First Baptist Fieldhouse", "Some Gymnasium"]:
             event = make_event(source="groupme", name="Play",
                                venues=[Venue(id="1", name=venue)])
-            assert surface_tags(event) == {"Indoor"}, venue
+            assert surface_tags(event) == {HARD_COURT}, venue
 
     def test_unknown_venue_yields_no_surface(self):
         """Better to emit no surface than to guess wrong."""
@@ -146,11 +146,23 @@ class TestTagLimit:
     def test_kind_survives_trimming(self):
         """Kind is first in priority, so it is never the tag that gets cut."""
         event = make_event(
-            kind="tournament", name="Reverse Grass Open Play Indoor",
+            kind="tournament", name="Reverse Coed Grass 2v2 Showdown",
             play_format="2s",
             venues=[Venue(id="1", name="iBeach"),
                     Venue(id="2", name="iBeach Indoor Courts")],
         )
+        assert "Tournament" in derive_tags(event)
+
+    def test_open_play_in_the_title_beats_the_source_kind(self):
+        """iBeach sells drop-in sessions as leagues; they are still open play."""
+        event = make_event(kind="league", name="Friday Adult Open Play")
+        tags = derive_tags(event)
+        assert "Open Play" in tags
+        assert "League" not in tags
+
+    def test_source_kind_wins_when_the_title_is_ambiguous(self):
+        """Only Open Play overrides the source; a stray word must not."""
+        event = make_event(kind="tournament", name="Summer League Showdown")
         assert "Tournament" in derive_tags(event)
 
 
