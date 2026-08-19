@@ -212,3 +212,18 @@ class TestEventModel:
         d = event.to_dict()
         assert d["map_url"].startswith("https://www.google.com/maps/")
         assert d["venues"][0]["map_url"] == d["map_url"]
+
+
+class TestKindEmoji:
+    def test_every_kind_has_its_own_emoji(self):
+        """A missing entry silently falls back, so assert each is distinct."""
+        from indyvb.models import Kind
+        from typing import get_args
+        from indyvb.render import KIND_EMOJI
+        kinds = set(get_args(Kind))
+        assert kinds <= set(KIND_EMOJI), f"no emoji for {kinds - set(KIND_EMOJI)}"
+        assert len(set(KIND_EMOJI[k] for k in kinds)) == len(kinds)
+
+    def test_one_off_event_uses_the_calendar_emoji(self):
+        embed = event_embed(make_event(kind="event"), TODAY)
+        assert embed["title"].startswith("\U0001f4c5")

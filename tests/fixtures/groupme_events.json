@@ -17,10 +17,37 @@
         "is_all_day": false,
         "timezone": "America/Indiana/Indianapolis",
         "creator_id": "88112233",
-        "going": ["1", "2", "3", "4"],
-        "not_going": ["5"],
+        "going": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "not_going": [
+          "5"
+        ],
         "created_at": "2026-08-15T14:22:10Z",
         "updated_at": "2026-08-15T14:22:10Z"
+      },
+      {
+        "event_id": "e67d7327e05f4b12b8305c0bfc4e83b3",
+        "conversation_id": "96686038",
+        "name": "Adult Open Play 9/25",
+        "description": "Open play this week!\n\nLocation: The Academy Volleyball Club (30th street)\n\n7pm-11pm\n\n$18/person to play.",
+        "location": null,
+        "share_url": "https://groupme.com/join_event/96686038/e67d7327e05f4b12b8305c0bfc4e83b3/6vxfoxiw",
+        "start_at": "2026-09-25T19:00:00-04:00",
+        "end_at": "2026-09-25T23:00:00-04:00",
+        "is_all_day": false,
+        "timezone": "America/Indiana/Indianapolis",
+        "creator_id": "88112233",
+        "going_count": 58,
+        "going": [
+          "1",
+          "2",
+          "3"
+        ],
+        "not_going": []
       },
       {
         "event_id": "01HQ8Z4K2M3N4P5Q6R7S8T9V",
@@ -54,7 +81,9 @@
         "is_all_day": true,
         "timezone": "America/Indiana/Indianapolis",
         "creator_id": "88112233",
-        "going": ["1"],
+        "going": [
+          "1"
+        ],
         "not_going": []
       },
       {

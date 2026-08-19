@@ -53,7 +53,7 @@ class StubFetcher:
 class TestParsing:
     def test_skips_events_without_a_name(self, events):
         """The fixture has one nameless entry that must be dropped."""
-        assert len(events) == 4
+        assert len(events) == 5
         assert all(e.name for e in events)
 
     def test_kind_and_uid(self, events):
@@ -201,7 +201,7 @@ class TestSource:
         assert len(fetcher.calls) == 1
         assert "/conversations/111/events/list" in fetcher.calls[0]["url"]
         assert "222" not in fetcher.calls[0]["url"]
-        assert len(events) == 4
+        assert len(events) == 5
 
     def test_allows_being_empty(self):
         """`health` must not treat a quiet week as a broken parser."""
@@ -271,3 +271,34 @@ class TestUnconfigured:
         events, error = source.safe_fetch(StubFetcher())
         assert events == []
         assert error is None
+
+
+class TestRealWorldShape:
+    """Cases taken from live API responses rather than the documented schema."""
+
+    @pytest.fixture
+    def open_play(self, events):
+        return next(e for e in events if e.name == "Adult Open Play 9/25")
+
+    def test_uses_the_share_url_deep_link(self, open_play):
+        assert open_play.url.startswith("https://groupme.com/join_event/")
+
+    def test_falls_back_when_no_share_url(self, events):
+        assert events[0].url == "https://groupme.com/events"
+
+    def test_null_location_is_survivable(self, open_play):
+        """Many real events carry location: null, with the venue only in text."""
+        assert open_play.venues == []
+        assert open_play.location is None
+
+    def test_still_taggable_without_a_venue(self, open_play):
+        """The forum requires a tag, so a venue-less event must still get one."""
+        assert derive_tags(open_play) == ["Open Play"]
+
+    def test_going_count_preferred_over_the_going_list(self, open_play):
+        """going_count is authoritative; the going list can be trimmed."""
+        assert "58 going" in open_play.description
+
+    def test_offset_timestamps_parse(self, open_play):
+        assert open_play.start_date == date(2026, 9, 25)
+        assert open_play.times == "7:00 PM - 11:00 PM"

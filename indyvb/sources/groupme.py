@@ -286,10 +286,16 @@ class GroupMeEvents(Source):
             ))
 
         description = clean(item.get("description")) or None
-        rsvp = len(item.get("going") or [])
+        # going_count is authoritative; the going list can be trimmed.
+        rsvp = item.get("going_count")
+        if rsvp is None:
+            rsvp = len(item.get("going") or [])
         if rsvp:
             note = f"{rsvp} going"
             description = f"{description}\n{note}" if description else note
+
+        # Real events carry a deep link straight to the event in GroupMe.
+        url = clean(item.get("share_url")) or f"{self.homepage}/events"
 
         return Event(
             source=self.slug,
@@ -297,7 +303,7 @@ class GroupMeEvents(Source):
             kind=self.event_kind,
             source_id=str(event_id),
             name=name,
-            url=f"{self.homepage}/events",
+            url=url,
             start_date=start.date(),
             end_date=end_date,
             times=times,

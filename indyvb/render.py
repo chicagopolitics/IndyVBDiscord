@@ -28,7 +28,11 @@ SOURCE_COLORS = {
 }
 DEFAULT_COLOR = 0x5865F2
 
-KIND_EMOJI = {"league": "\U0001f3d0", "tournament": "\U0001f3c6"}  # volleyball, trophy
+KIND_EMOJI = {
+    "league": "\U0001f3d0",      # volleyball
+    "tournament": "\U0001f3c6",  # trophy
+    "event": "\U0001f4c5",       # calendar - one-off sessions, e.g. from GroupMe
+}
 
 STATUS_EMOJI = {
     "open": "\U0001f7e2",       # green circle
