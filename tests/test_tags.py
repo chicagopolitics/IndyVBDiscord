@@ -75,20 +75,30 @@ class TestSurfaceTags:
         event = make_event(venues=[Venue(id="1", name="iBeach")])
         assert surface_tags(event) == {"Sand"}
 
-    def test_ibeach_both_courts(self):
-        """Leagues listing both venues play on sand and indoors."""
+    def test_ibeach_indoor_courts_do_not_add_indoor(self):
+        """iBeach is Sand only; its indoor courts are incidental overflow."""
         event = make_event(venues=[Venue(id="1", name="iBeach"),
                                    Venue(id="2", name="iBeach Indoor Courts")])
-        assert surface_tags(event) == {"Sand", "Indoor"}
+        assert surface_tags(event) == {"Sand"}
+
+    def test_ibeach_tournaments_are_sand(self):
+        event = make_event(source="ibeach-tournaments", kind="tournament",
+                           venues=[Venue(id="1", name="iBeach31")])
+        assert surface_tags(event) == {"Sand"}
 
     def test_grass_detected_from_text(self):
         event = make_event(source="cca", name="Summer Grass Doubles")
         assert "Grass" in surface_tags(event)
 
-    def test_indoor_wording_wins_over_source_default(self):
-        event = make_event(name="Indoor Winter League",
+    def test_indoor_wording_applies_to_non_sand_sources(self):
+        event = make_event(source="other", name="Indoor Winter League",
                            venues=[Venue(id="1", name="Some Gym")])
         assert "Indoor" in surface_tags(event)
+
+    def test_grass_still_detected_for_a_sand_source(self):
+        """The early return for sand sources must not swallow Grass."""
+        event = make_event(name="Summer Grass Doubles")
+        assert surface_tags(event) == {"Sand", "Grass"}
 
     def test_ibeach_with_no_venues_defaults_to_sand(self):
         assert "Sand" in surface_tags(make_event(venues=[]))

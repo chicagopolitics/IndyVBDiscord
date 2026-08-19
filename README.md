@@ -151,14 +151,14 @@ set. Re-run it whenever the forum's tags change.
 |---|---|
 | `League` / `Tournament` | the listing kind (always exactly one) |
 | `Doubles` / `Quads` | play format 2s / 4s (6s has no tag in the vocabulary) |
-| `Sand` / `Indoor` | the source and the venues on the listing |
+| `Sand` / `Indoor` | the source: iBeach is Sand, CCA is Indoor |
 | `Grass` | the word "grass" in the listing |
 | `Reverse Co-Ed` | the word "reverse" in the listing |
 | `Open Play` | the phrase "open play" in the listing |
 
-An event can carry more than one surface tag. Most iBeach leagues list both the
-sand courts and the indoor courts, because play moves inside later in the
-season, so they are tagged `Sand` and `Indoor`.
+iBeach listings are tagged `Sand` only. Most of them also name
+"iBeach Indoor Courts" alongside the sand courts, but those are treated as
+incidental overflow rather than a second surface. CCA listings are `Indoor`.
 
 Discord caps a thread at 5 tags. Derivation is ordered so the kind is never the
 tag that gets trimmed, since the forum requires at least one.

@@ -46,10 +46,12 @@ def _text_of(event: Event) -> str:
 
 
 def surface_tags(event: Event) -> set[str]:
-    """Playing surface. An event can legitimately have more than one.
+    """Playing surface for an event.
 
-    Several iBeach leagues list both the sand courts and the indoor courts,
-    because play moves inside later in the season.
+    iBeach listings are tagged Sand only. Most of them also name
+    "iBeach Indoor Courts" alongside the sand courts, but those are treated as
+    incidental overflow rather than a second surface, so members see iBeach as
+    the sand venue it is generally understood to be.
     """
     text = _text_of(event)
     found: set[str] = set()
@@ -57,17 +59,14 @@ def surface_tags(event: Event) -> set[str]:
     if "grass" in text:
         found.add("Grass")
 
+    if event.source in _SAND_SOURCES:
+        found.add("Sand")
+        # Deliberately skips the indoor checks below: the indoor courts named
+        # on these listings must not produce an Indoor tag.
+        return found
+
     if event.source in _INDOOR_SOURCES:
         found.add("Indoor")
-    if event.source in _SAND_SOURCES:
-        # "iBeach Indoor Courts" is a distinct venue from the sand courts.
-        indoor_venue = any("indoor" in v.name.lower() for v in event.venues)
-        sand_venue = any("indoor" not in v.name.lower() for v in event.venues)
-        if indoor_venue:
-            found.add("Indoor")
-        if sand_venue or not event.venues:
-            found.add("Sand")
-
     # Explicit wording in the listing beats any assumption about the source.
     if "indoor" in text:
         found.add("Indoor")
