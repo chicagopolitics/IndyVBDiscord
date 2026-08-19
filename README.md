@@ -125,6 +125,54 @@ Mirror listings into the server's Events tab (preview first):
 | `--dry-run` | Print what would be sent, send nothing |
 | `--cache DIR` | Cache HTTP responses; lets you iterate offline |
 
+## Posting to a forum channel
+
+A forum channel is not a text channel with extras - a webhook message without a
+thread name is rejected outright, and tags are applied by snowflake id rather
+than by name. Pass `--forum` (or set `DISCORD_FORUM=1`) and each listing becomes
+its own forum thread with tags applied.
+
+### One-time setup
+
+Tag ids are only exposed on the channel object, which needs a bot token. The
+channel is found from the webhook itself, so the token is the only extra config:
+
+```bash
+.venv/Scripts/python.exe -m indyvb.cli forum-tags --save
+```
+
+That writes `data/forum_tags.json` and reports drift in both directions - tags
+this tool would apply that the forum lacks, and forum tags nothing will ever
+set. Re-run it whenever the forum's tags change.
+
+### How tags are derived
+
+| Tag | Comes from |
+|---|---|
+| `League` / `Tournament` | the listing kind (always exactly one) |
+| `Doubles` / `Quads` | play format 2s / 4s (6s has no tag in the vocabulary) |
+| `Sand` / `Indoor` | the source and the venues on the listing |
+| `Grass` | the word "grass" in the listing |
+| `Reverse Co-Ed` | the word "reverse" in the listing |
+| `Open Play` | the phrase "open play" in the listing |
+
+An event can carry more than one surface tag. Most iBeach leagues list both the
+sand courts and the indoor courts, because play moves inside later in the
+season, so they are tagged `Sand` and `Indoor`.
+
+Discord caps a thread at 5 tags. Derivation is ordered so the kind is never the
+tag that gets trimmed, since the forum requires at least one.
+
+### Safety behaviour
+
+Because the forum *requires* a tag, a listing whose tags cannot be resolved
+would be rejected mid-run. The command checks every listing up front and
+refuses to post anything if any of them is untaggable, naming the offenders.
+
+Posting creates one thread per listing rather than one batched message, so a
+failure part way through is possible. Successfully created threads are recorded
+before the error is reported, and re-running resumes rather than duplicating.
+
 ## How `--new-only` works
 
 Each listing has a stable id from the upstream system, so it gets a stable uid

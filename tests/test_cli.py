@@ -191,3 +191,98 @@ def test_unknown_source_is_rejected():
     with pytest.raises(ValueError, match="unknown source"):
         from indyvb import sources
         sources.build(["nope"])
+
+
+class TestForumPosting:
+    """Forum mode: one thread per listing, tags required."""
+
+    @pytest.fixture
+    def tag_file(self, tmp_path):
+        import json as _json
+        path = tmp_path / "forum_tags.json"
+        path.write_text(_json.dumps({"tags": {
+            "Sand": "1", "Indoor": "2", "Grass": "3", "Open Play": "4",
+            "Doubles": "5", "Quads": "6", "Reverse Co-Ed": "7",
+            "League": "8", "Tournament": "9",
+        }}), encoding="utf-8")
+        return str(path)
+
+    @pytest.fixture
+    def forum(self, stub, monkeypatch):
+        """Capture threads instead of posting them."""
+        threads = []
+
+        class RecordingForum:
+            def __init__(self, *a, **k):
+                pass
+
+            def send_thread(self, thread_name, embeds, applied_tags=None,
+                            content=None):
+                if getattr(self, "fail_at", None) == len(threads):
+                    from indyvb.publish import PublishError
+                    raise PublishError("simulated outage")
+                threads.append({"name": thread_name, "tags": applied_tags})
+
+        monkeypatch.setattr(cli, "ForumWebhookPublisher", RecordingForum)
+        stub["threads"] = threads
+        stub["forum_cls"] = RecordingForum
+        return stub
+
+    def test_creates_one_thread_per_listing(self, forum, tag_file, tmp_path):
+        forum["events"] = [make_event("1"), make_event("2")]
+        code = run(["post", "--forum", "--tag-config", tag_file,
+                    "--state", str(tmp_path / "seen.json")])
+        assert code == 0
+        assert len(forum["threads"]) == 2
+
+    def test_applies_derived_tags(self, forum, tag_file, tmp_path):
+        forum["events"] = [make_event("1", name="Reverse Coed 4v4", kind="league")]
+        run(["post", "--forum", "--tag-config", tag_file,
+             "--state", str(tmp_path / "seen.json")])
+        applied = forum["threads"][0]["tags"]
+        assert "8" in applied          # League
+        assert "6" in applied          # Quads
+        assert "7" in applied          # Reverse Co-Ed
+
+    def test_aborts_before_posting_if_a_tag_cannot_resolve(
+            self, forum, tmp_path):
+        """The forum rejects untagged posts, so fail before sending any."""
+        import json as _json
+        empty = tmp_path / "empty.json"
+        empty.write_text(_json.dumps({"tags": {}}), encoding="utf-8")
+
+        code = run(["post", "--forum", "--tag-config", str(empty),
+                    "--state", str(tmp_path / "seen.json")])
+        assert code == 2
+        assert forum["threads"] == []
+
+    def test_missing_tag_config_is_reported(self, forum, tmp_path):
+        code = run(["post", "--forum", "--tag-config", str(tmp_path / "nope.json"),
+                    "--state", str(tmp_path / "seen.json")])
+        assert code == 2
+        assert forum["threads"] == []
+
+    def test_partial_failure_records_only_what_posted(
+            self, forum, tag_file, tmp_path):
+        """A mid-run outage must not orphan or duplicate threads."""
+        state = tmp_path / "seen.json"
+        forum["events"] = [make_event(str(i)) for i in range(4)]
+        forum["forum_cls"].fail_at = 2      # third thread blows up
+
+        code = run(["post", "--forum", "--new-only", "--tag-config", tag_file,
+                    "--state", str(state)])
+        assert code == 2
+        assert len(forum["threads"]) == 2
+
+        # Re-running posts only the two that never made it.
+        forum["forum_cls"].fail_at = None
+        forum["threads"].clear()
+        assert run(["post", "--forum", "--new-only", "--tag-config", tag_file,
+                    "--state", str(state)]) == 0
+        assert len(forum["threads"]) == 2
+
+    def test_dry_run_sends_nothing(self, forum, tag_file, tmp_path):
+        forum["events"] = [make_event("1")]
+        run(["post", "--forum", "--dry-run", "--tag-config", tag_file,
+             "--state", str(tmp_path / "seen.json")])
+        assert forum["threads"] == []

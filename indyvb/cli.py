@@ -16,9 +16,12 @@ from .discord_events import DiscordEventError, ScheduledEventSync
 from .http import Fetcher
 from .ics import DEFAULT_CALENDAR_NAME, to_ics
 from .models import Event
-from .publish import ConsolePublisher, PublishError, WebhookPublisher, publish_all
+from .publish import (ConsoleForumPublisher, ConsolePublisher, ForumWebhookPublisher,
+                      PublishError, WebhookPublisher, publish_all)
 from .render import chunk_embeds, digest_embeds, event_embed, to_text
 from .store import DEFAULT_STATE_PATH, SeenStore
+from .tags import (DEFAULT_TAG_CONFIG, TAG_PRIORITY, TagLookupError, TagMap,
+                   derive_tags, fetch_available_tags)
 
 log = logging.getLogger("indyvb")
 
@@ -213,6 +216,42 @@ def cmd_discord_events(args) -> int:
     return 0
 
 
+def cmd_forum_tags(args) -> int:
+    """List the forum's tags and, with --save, write the name-to-id mapping."""
+    try:
+        available = fetch_available_tags(
+            os.getenv("DISCORD_BOT_TOKEN", ""),
+            os.getenv("DISCORD_WEBHOOK_URL", ""),
+        )
+    except TagLookupError as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 2
+
+    print(f"Forum tags ({len(available)}):\n")
+    width = max(len(n) for n in available)
+    for name, tag_id in available.items():
+        print(f"  {name:{width}}  {tag_id}")
+
+    # Report vocabulary drift in both directions: tags this tool would apply
+    # but the forum lacks, and forum tags nothing will ever set.
+    known = {n.strip().lower() for n in available}
+    unmapped = [t for t in TAG_PRIORITY if t.lower() not in known]
+    unused = [n for n in available if n.strip().lower() not in
+              {t.lower() for t in TAG_PRIORITY}]
+    if unmapped:
+        print(f"\n  Not present in the forum (will be skipped): "
+              f"{', '.join(unmapped)}")
+    if unused:
+        print(f"  Forum tags this tool never applies: {', '.join(unused)}")
+
+    if args.save:
+        path = TagMap.save(available, args.tag_config)
+        print(f"\nSaved mapping to {path}")
+    else:
+        print("\nRe-run with --save to write the mapping file.")
+    return 0
+
+
 def cmd_post(args) -> int:
     fetcher = _make_fetcher(args)
     events, errors = collect(args.source, fetcher)
@@ -241,6 +280,24 @@ def cmd_post(args) -> int:
         print("Nothing to post.")
         return 0
 
+    if args.forum:
+        return _post_to_forum(args, store, to_post)
+    return _post_to_channel(args, store, to_post)
+
+
+def _record(args, store: SeenStore, posted: list[Event]) -> None:
+    """Persist what actually reached Discord, if we are tracking state."""
+    if not posted or not args.new_only or args.dry_run:
+        return
+    store.record(posted)
+    pruned = store.prune()
+    store.save()
+    print(f"State updated ({len(store)} tracked"
+          + (f", {pruned} pruned" if pruned else "") + ").")
+
+
+def _post_to_channel(args, store: SeenStore, to_post: list[Event]) -> int:
+    """Normal text channel: batched embeds, several per message."""
     if args.style == "digest":
         embeds = digest_embeds(to_post)
     else:
@@ -272,14 +329,73 @@ def cmd_post(args) -> int:
 
     print(f"{'Would send' if args.dry_run else 'Sent'} {sent} embed(s) "
           f"in {len(batches)} message(s).")
+    _record(args, store, to_post)
+    return 0
 
-    # Only remember what actually reached Discord.
-    if args.new_only and not args.dry_run:
-        store.record(to_post)
-        pruned = store.prune()
-        store.save()
-        print(f"State updated ({len(store)} tracked"
-              + (f", {pruned} pruned" if pruned else "") + ").")
+
+def _post_to_forum(args, store: SeenStore, to_post: list[Event]) -> int:
+    """Forum channel: one thread per listing, with required tags applied."""
+    try:
+        tag_map = TagMap.load(args.tag_config)
+    except (FileNotFoundError, json.JSONDecodeError) as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 2
+
+    # Tags are required by the forum, so a listing we cannot tag would be
+    # rejected. Fail before posting anything rather than part way through.
+    untaggable = [e for e in to_post if not tag_map.ids_for(derive_tags(e))]
+    if untaggable:
+        print("Error: no forum tag could be resolved for these listings, and "
+              "the forum requires at least one:", file=sys.stderr)
+        for event in untaggable[:10]:
+            print(f"  - {event.name}  (wanted: {', '.join(derive_tags(event))})",
+                  file=sys.stderr)
+        print("Run `forum-tags` to check the mapping.", file=sys.stderr)
+        return 2
+
+    if args.dry_run:
+        publisher = ConsoleForumPublisher(verbose=args.verbose)
+    else:
+        try:
+            publisher = ForumWebhookPublisher(
+                os.getenv("DISCORD_WEBHOOK_URL", ""),
+                username=os.getenv("DISCORD_USERNAME") or None,
+                avatar_url=os.getenv("DISCORD_AVATAR_URL") or None,
+            )
+        except PublishError as exc:
+            print(f"Error: {exc}", file=sys.stderr)
+            return 2
+
+    posted: list[Event] = []
+    failure: str | None = None
+    for event in to_post:
+        names = derive_tags(event)
+        try:
+            publisher.send_thread(
+                thread_name=event.name,
+                embeds=[event_embed(event)],
+                applied_tags=tag_map.ids_for(names),
+            )
+        except PublishError as exc:
+            failure = str(exc)
+            break
+        posted.append(event)
+        print(f"  {'would post' if args.dry_run else 'posted'}: "
+              f"{event.name[:58]}  [{', '.join(names)}]")
+
+    print(f"\n{'Would create' if args.dry_run else 'Created'} "
+          f"{len(posted)} thread(s).")
+
+    # Record the successes even if a later one failed, so a re-run resumes
+    # instead of duplicating threads that already exist.
+    _record(args, store, posted)
+
+    if failure:
+        print(f"\nStopped after {len(posted)} thread(s): {failure}",
+              file=sys.stderr)
+        print("Re-run to continue; already-posted listings will be skipped.",
+              file=sys.stderr)
+        return 2
     return 0
 
 
@@ -309,6 +425,10 @@ def build_parser() -> argparse.ArgumentParser:
                         help="filter by text in the name or location")
     common.add_argument("--cache", metavar="DIR",
                         help="cache HTTP responses in DIR (useful offline)")
+    common.add_argument("--tag-config", default=str(DEFAULT_TAG_CONFIG),
+                        metavar="FILE",
+                        help=f"forum tag name-to-id mapping "
+                             f"(default {DEFAULT_TAG_CONFIG})")
 
     sub = parser.add_subparsers(dest="command", required=True)
 
@@ -339,6 +459,12 @@ def build_parser() -> argparse.ArgumentParser:
                         "guards against publishing an empty calendar")
     p.set_defaults(func=cmd_calendar)
 
+    p = sub.add_parser("forum-tags", parents=[common],
+                       help="list the forum tag ids and save the mapping")
+    p.add_argument("--save", action="store_true",
+                   help="write the mapping file used when posting")
+    p.set_defaults(func=cmd_forum_tags)
+
     p = sub.add_parser("discord-events", parents=[common],
                        help="mirror listings into the server Events tab")
     p.add_argument("--dry-run", action="store_true",
@@ -357,6 +483,11 @@ def build_parser() -> argparse.ArgumentParser:
                    help=f"path to the seen-state file (default {DEFAULT_STATE_PATH})")
     p.add_argument("--allow-partial", action="store_true",
                    help="post with --new-only even if a source failed")
+    p.add_argument("--forum", action="store_true",
+                   default=os.getenv("DISCORD_FORUM", "").lower()
+                   in ("1", "true", "yes"),
+                   help="target is a forum channel: one thread per listing, "
+                        "with required tags applied (env: DISCORD_FORUM)")
     p.set_defaults(func=cmd_post)
 
     return parser

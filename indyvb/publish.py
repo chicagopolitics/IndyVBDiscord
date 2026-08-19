@@ -17,6 +17,11 @@ log = logging.getLogger(__name__)
 RATE_LIMIT_PAUSE = 1.0
 MAX_RETRIES = 5
 
+# Forum thread names are capped at 100 characters, and a thread carries at
+# most 5 tags.
+MAX_THREAD_NAME = 100
+MAX_APPLIED_TAGS = 5
+
 
 class PublishError(RuntimeError):
     pass
@@ -69,7 +74,7 @@ class WebhookPublisher(Publisher):
         self.avatar_url = avatar_url
         self.session = session or requests.Session()
 
-    def send(self, embeds: list[dict], content: str | None = None) -> None:
+    def _base_payload(self, embeds: list[dict], content: str | None) -> dict:
         payload: dict = {"embeds": embeds}
         if content:
             payload["content"] = content
@@ -79,7 +84,12 @@ class WebhookPublisher(Publisher):
             payload["avatar_url"] = self.avatar_url
         # Never let a scraped listing ping the whole server.
         payload["allowed_mentions"] = {"parse": []}
+        return payload
 
+    def send(self, embeds: list[dict], content: str | None = None) -> None:
+        self._post(self._base_payload(embeds, content))
+
+    def _post(self, payload: dict) -> None:
         for attempt in range(1, MAX_RETRIES + 1):
             resp = self.session.post(self.webhook_url, json=payload, timeout=30)
 
@@ -104,6 +114,41 @@ class WebhookPublisher(Publisher):
                 f"{resp.text[:400]}"
             )
         raise PublishError(f"Giving up after {MAX_RETRIES} attempts (rate limited).")
+
+
+class ForumWebhookPublisher(WebhookPublisher):
+    """Posts to a forum channel, where every message creates its own thread.
+
+    A forum channel rejects a plain webhook message: ``thread_name`` is
+    required, and tags are applied by snowflake id via ``applied_tags``.
+    """
+
+    def send(self, embeds: list[dict], content: str | None = None) -> None:
+        raise PublishError(
+            "A forum channel needs a thread name; use send_thread() instead."
+        )
+
+    def send_thread(self, thread_name: str, embeds: list[dict],
+                    applied_tags: list[str] | None = None,
+                    content: str | None = None) -> None:
+        payload = self._base_payload(embeds, content)
+        payload["thread_name"] = (thread_name or "Untitled")[:MAX_THREAD_NAME]
+        if applied_tags:
+            payload["applied_tags"] = [str(t) for t in applied_tags[:MAX_APPLIED_TAGS]]
+        self._post(payload)
+
+
+class ConsoleForumPublisher(ConsolePublisher):
+    """Dry-run target for forum posting."""
+
+    def send_thread(self, thread_name: str, embeds: list[dict],
+                    applied_tags: list[str] | None = None,
+                    content: str | None = None) -> None:
+        self.messages.append({
+            "thread_name": thread_name,
+            "applied_tags": applied_tags or [],
+            "embeds": embeds,
+        })
 
 
 def _retry_after(resp: requests.Response) -> float:
