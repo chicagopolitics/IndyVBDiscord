@@ -23,6 +23,14 @@ _FINGERPRINT_FIELDS = (
 )
 
 
+# Statuses that positively mean "you cannot sign up for this". Anything else,
+# including an unknown status, is treated as still available.
+_CLOSED_STATUSES = {
+    "closed", "sold out", "soldout", "full", "completed", "cancelled",
+    "canceled", "ended", "finished",
+}
+
+
 def _iso(value: date | None) -> str | None:
     return value.isoformat() if value else None
 
@@ -74,7 +82,18 @@ class Event:
 
     @property
     def is_open(self) -> bool:
+        """True only when the source explicitly says signups are open."""
         return (self.status or "").strip().lower() in {"open", "openings", "available"}
+
+    @property
+    def is_closed(self) -> bool:
+        """True only when the source explicitly says it is unavailable.
+
+        Deliberately not ``not is_open``. Some sources expose no registration
+        status at all - VolleyballLife's summaries endpoint is one - and
+        treating unknown as closed silently hides every one of their events.
+        """
+        return (self.status or "").strip().lower() in _CLOSED_STATUSES
 
     def is_upcoming(self, today: date | None = None) -> bool:
         """True when this hasn't finished yet. Undated events count as upcoming."""

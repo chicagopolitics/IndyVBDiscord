@@ -227,3 +227,30 @@ class TestKindEmoji:
     def test_one_off_event_uses_the_calendar_emoji(self):
         embed = event_embed(make_event(kind="event"), TODAY)
         assert embed["title"].startswith("\U0001f4c5")
+
+
+class TestAvailability:
+    """`--open-only` must not hide sources that expose no status at all."""
+
+    def test_unknown_status_is_not_closed(self):
+        """VolleyballLife tournaments carry no registration status."""
+        event = make_event(status=None)
+        assert not event.is_open
+        assert not event.is_closed
+
+    @pytest.mark.parametrize("status", [
+        "Closed", "Sold Out", "sold out", "Completed", "Cancelled", "Full",
+    ])
+    def test_known_closed_statuses(self, status):
+        assert make_event(status=status).is_closed
+
+    @pytest.mark.parametrize("status", ["Open", "open", "Available"])
+    def test_open_statuses(self, status):
+        event = make_event(status=status)
+        assert event.is_open and not event.is_closed
+
+    def test_not_yet_open_is_kept(self):
+        """"Opens August 21" is neither open now nor closed - keep it."""
+        event = make_event(status="Opens August 21")
+        assert not event.is_open
+        assert not event.is_closed

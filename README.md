@@ -178,7 +178,7 @@ Mirror listings into the server's Events tab (preview first):
 | `--source cca` | Limit to one source (repeatable) |
 | `--kind tournament` | Only tournaments, or only leagues |
 | `--within 30` | Only events starting in the next 30 days |
-| `--open-only` | Only listings still open for signup |
+| `--open-only` | Hide listings that are closed or sold out |
 | `--search fishers` | Filter by name or location text |
 | `--style digest` | One compact embed per source instead of one per event |
 | `--dry-run` | Print what would be sent, send nothing |
@@ -466,6 +466,9 @@ tests/           Parser, store and render tests, with saved page fixtures
   leagues very often have teams sold out while individual spots stay open.
 - **VolleyballLife registration status is not exposed** by the summaries
   endpoint, so tournaments show no open/closed state; the event link has it.
+  This is why `--open-only` drops only listings *known* to be closed rather
+  than keeping only those known to be open - the latter silently hid every
+  iBeach tournament.
 - The VolleyballLife endpoint is not scoped to one organization, so results are
   filtered to `ibeachvolleyball` explicitly.
 - **A few CCA venues store coordinates in their address field** instead of a

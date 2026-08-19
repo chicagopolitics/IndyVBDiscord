@@ -1,0 +1,155 @@
+{
+  "updated_at": "2026-08-19T15:55:02+00:00",
+  "events": {
+    "cca:league:102721": {
+      "fingerprint": "147e5a9363cf0d47",
+      "name": "Fall 2026 Wednesday Indoor Volleyball 6's League - FBA",
+      "start_date": "2026-08-19",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105615": {
+      "fingerprint": "562c0eda7b4f0663",
+      "name": "Fall 2026 Thursday Coed 2v2 A (competitive)",
+      "start_date": "2026-08-20",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105614": {
+      "fingerprint": "bfcac54171e6761e",
+      "name": "Fall 2026 Thursday Coed 2v2 Level BB (upper intermediate)",
+      "start_date": "2026-08-20",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105613": {
+      "fingerprint": "dcbd6bb34ccb2b39",
+      "name": "Fall 2026 Thursday Coed 4v4 A (Competitive)",
+      "start_date": "2026-08-20",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105612": {
+      "fingerprint": "89849ad8e9dc679e",
+      "name": "Fall 2026 Thursday Coed 4v4 B/BB (intermediate)",
+      "start_date": "2026-08-20",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105611": {
+      "fingerprint": "b5d5179d31c26b1f",
+      "name": "Fall 2026 Thursday Coed 6v6 Level B/BB (intermediate)",
+      "start_date": "2026-08-20",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "cca-tournaments:tournament:102365": {
+      "fingerprint": "03b7498b7ed8769e",
+      "name": "AUGUST 2026 COED 6'S INDOOR VOLLEYBALL TOURNAMENT",
+      "start_date": "2026-08-21",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:103203": {
+      "fingerprint": "c3780087a9a63e63",
+      "name": "Friday Adult Open Play",
+      "start_date": "2026-08-21",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105619": {
+      "fingerprint": "707585a76526a263",
+      "name": "Fall 2026 Sunday Coed 2v2 Level B",
+      "start_date": "2026-08-23",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105617": {
+      "fingerprint": "a065322b4791e53b",
+      "name": "Fall 2026 Sunday Coed 4v4 Level B/BB(beginner intermediate)",
+      "start_date": "2026-08-23",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105616": {
+      "fingerprint": "385a237712258ed4",
+      "name": "Fall 2026 Sunday Coed 6v6 Levels Recreational & B (beginner intermediate) & BB (upper intermediate)",
+      "start_date": "2026-08-23",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105618": {
+      "fingerprint": "fbc28bc8b5c0ed2b",
+      "name": "Fall 2026 Sunday Women's 4v4 Level B/BB (beginner intermediate/upper intermediate)",
+      "start_date": "2026-08-23",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105699": {
+      "fingerprint": "0c708d18ad5fc12a",
+      "name": "NEW Fall 2026 Sunday Men's 2v2 Level B/BB",
+      "start_date": "2026-08-23",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105623": {
+      "fingerprint": "bc49c98c1a746400",
+      "name": "Fall 2026 Monday \"Cali\" Coed 2v2 Level BB/A (competitive/upper intermediate)",
+      "start_date": "2026-08-24",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105621": {
+      "fingerprint": "ec41d5e7afc0ce2b",
+      "name": "Fall 2026 Monday Coed 4v4 Level B",
+      "start_date": "2026-08-24",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105622": {
+      "fingerprint": "3060544f1edf1916",
+      "name": "Fall 2026 Monday Coed 4v4 Level BB/A",
+      "start_date": "2026-08-24",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105620": {
+      "fingerprint": "76423fe9c420d578",
+      "name": "Fall 2026 Monday Coed 6v6 Level Recreational/B & BB",
+      "start_date": "2026-08-24",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "cca:league:101595": {
+      "fingerprint": "c65d23ebd242af3c",
+      "name": "Fall 2026 Wednesday Downtown Indoor Volleyball 6's League - Fountain Square",
+      "start_date": "2026-08-26",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105610": {
+      "fingerprint": "5eaa05fe4c9ab755",
+      "name": "Fall 2026 Wednesday Coed 4v4 Level B/BB",
+      "start_date": "2026-08-26",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:105609": {
+      "fingerprint": "2def0775f2ea806a",
+      "name": "Fall 2026 Wednesday Reverse Coed 4v4 Level A/BB",
+      "start_date": "2026-08-26",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:106308": {
+      "fingerprint": "fbc21317d7d5d362",
+      "name": "Fall 2026 Wednesday Men's Work Up Competitive",
+      "start_date": "2026-09-02",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "ibeach-leagues:league:106298": {
+      "fingerprint": "ef1656b7ab01547f",
+      "name": "Fall 2026 Wednesday Women's Work Up Competitive",
+      "start_date": "2026-09-02",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "cca:league:102725": {
+      "fingerprint": "ef8ea84fd911363e",
+      "name": "Fall 2026 Thursday Downtown Indoor Volleyball 6's League - Fountain Square",
+      "start_date": "2026-09-10",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "cca:league:106341": {
+      "fingerprint": "e23a1afe7e111295",
+      "name": "Late Fall 2026 Monday Downtown Indoor Volleyball 6's League - Fountain Square",
+      "start_date": "2026-10-05",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    },
+    "cca:league:106342": {
+      "fingerprint": "4967af263af2096f",
+      "name": "Late Fall 2026 Sunday Downtown Indoor Volleyball 6's League - Fountain Square",
+      "start_date": "2026-10-11",
+      "last_seen": "2026-08-19T15:55:02+00:00"
+    }
+  }
+}

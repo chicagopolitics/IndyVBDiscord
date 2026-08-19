@@ -50,7 +50,9 @@ def apply_filters(events: list[Event], args, today: date | None = None) -> list[
     if args.kind:
         result = [e for e in result if e.kind == args.kind]
     if args.open_only:
-        result = [e for e in result if e.is_open]
+        # Drops only listings known to be closed. Sources that expose no
+        # registration status at all would otherwise vanish entirely.
+        result = [e for e in result if not e.is_closed]
     if args.within:
         horizon = today + timedelta(days=args.within)
         # Undated listings are kept: dropping them would hide real events.
@@ -476,7 +478,8 @@ def build_parser() -> argparse.ArgumentParser:
     common.add_argument("--within", type=int, metavar="DAYS",
                         help="only events starting within DAYS days")
     common.add_argument("--open-only", action="store_true",
-                        help="only listings still open for signup")
+                        help="hide listings that are closed or sold out "
+                             "(keeps ones whose status is unknown)")
     common.add_argument("--include-past", action="store_true",
                         help="keep events that have already finished")
     common.add_argument("--search", metavar="TEXT",
