@@ -32,10 +32,28 @@ MODIFIER_TAGS = ("Reverse Co-Ed", "Open Play")
 
 TAG_PRIORITY = KIND_TAGS + SURFACE_TAGS + FORMAT_TAGS + MODIFIER_TAGS
 
-# Sources whose events are always played indoors.
+# Sources that only ever play one surface. CCA is hard court; iBeach is sand,
+# including at its indoor sand facility.
 _INDOOR_SOURCES = {"cca", "cca-tournaments"}
-# Sources played on sand unless a venue says otherwise.
 _SAND_SOURCES = {"ibeach-leagues", "ibeach-tournaments"}
+
+_GRASS_RE = r"\bgrass\b"
+_SAND_RE = r"\b(sand|beach)\b"
+# Hard-court signals. Deliberately excludes the word "indoor", which says where
+# an event is, not what it is played on - iBeach's indoor courts are sand.
+_HARD_COURT_RE = (
+    r"\b(hard ?court|hardwood|gym|gymnasium|field ?house|ymca|jcc"
+    r"|rec(reation)? cent(er|re)|high school|middle school)\b"
+)
+
+# Local venues whose surface cannot be read from the name. Substrings, matched
+# case-insensitively against the listing text and venue names. Add to this as
+# new venues turn up - it is the intended place for local knowledge.
+VENUE_SURFACE = {
+    "ibeach": "Sand",                    # includes "iBeach Indoor Courts"
+    "academy volleyball club": "Indoor",  # hard court, despite the name
+    "the academy": "Indoor",
+}
 
 
 def _text_of(event: Event) -> str:
@@ -47,36 +65,37 @@ def _text_of(event: Event) -> str:
 
 
 def surface_tags(event: Event) -> set[str]:
-    """Playing surface for an event.
+    """What the event is played ON - not whether it has a roof.
 
-    iBeach listings are tagged Sand only. Most of them also name
-    "iBeach Indoor Courts" alongside the sand courts, but those are treated as
-    incidental overflow rather than a second surface, so members see iBeach as
-    the sand venue it is generally understood to be.
+    This distinction matters locally: iBeach has an indoor *sand* facility, so
+    "iBeach Indoor Courts" is Sand. The Indoor tag means hard court, which is
+    why the word "indoor" on its own is not evidence for it.
+
+    Returns at most one surface: an event is not both sand and hard court.
     """
     text = _text_of(event)
-    found: set[str] = set()
 
-    if "grass" in text:
-        found.add("Grass")
+    if re.search(_GRASS_RE, text):
+        return {"Grass"}
 
+    # Venues whose surface the name alone does not reveal.
+    for needle, surface in VENUE_SURFACE.items():
+        if needle in text:
+            return {surface}
+
+    # Sources that only ever play one surface.
     if event.source in _SAND_SOURCES:
-        found.add("Sand")
-        # Deliberately skips the indoor checks below: the indoor courts named
-        # on these listings must not produce an Indoor tag.
-        return found
-
+        return {"Sand"}
     if event.source in _INDOOR_SOURCES:
-        found.add("Indoor")
+        return {"Indoor"}
 
-    # Sources with no fixed surface (GroupMe) are classified from the listing
-    # text and venue name instead.
-    if re.search(r"\b(sand|beach)\b", text) or "ibeach" in text:
-        found.add("Sand")
-    if re.search(r"\b(indoor|gym|gymnasium|fieldhouse|ymca)\b", text):
-        found.add("Indoor")
-
-    return found
+    # Otherwise read it from the listing. Sand is checked first so that
+    # "indoor sand" resolves to Sand rather than to hard court.
+    if re.search(_SAND_RE, text):
+        return {"Sand"}
+    if re.search(_HARD_COURT_RE, text):
+        return {"Indoor"}
+    return set()
 
 
 def kind_tags(event: Event) -> set[str]:

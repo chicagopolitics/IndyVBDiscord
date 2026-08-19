@@ -291,9 +291,17 @@ class TestRealWorldShape:
         assert open_play.venues == []
         assert open_play.location is None
 
-    def test_still_taggable_without_a_venue(self, open_play):
-        """The forum requires a tag, so a venue-less event must still get one."""
-        assert derive_tags(open_play) == ["Open Play"]
+    def test_venue_read_from_the_description(self, open_play):
+        """No location object, but the description names a known hard court."""
+        assert derive_tags(open_play) == ["Indoor", "Open Play"]
+
+    def test_still_taggable_when_the_venue_is_unrecognised(self):
+        """The forum requires a tag, so an unknown venue must still get one."""
+        event = GroupMeEvents(token="t").parse_event({
+            "event_id": "q", "name": "Pickup", "location": None,
+            "start_at": "2026-09-25T19:00:00-04:00",
+        }, None)
+        assert derive_tags(event) == ["Open Play"]
 
     def test_going_count_preferred_over_the_going_list(self, open_play):
         """going_count is authoritative; the going list can be trimmed."""

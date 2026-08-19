@@ -210,14 +210,25 @@ set. Re-run it whenever the forum's tags change.
 |---|---|
 | `League` / `Tournament` | the listing kind (always exactly one) |
 | `Doubles` / `Quads` | play format 2s / 4s (6s has no tag in the vocabulary) |
-| `Sand` / `Indoor` | the source: iBeach is Sand, CCA is Indoor |
+| `Sand` / `Indoor` / `Grass` | the playing surface - see below |
 | `Grass` | the word "grass" in the listing |
 | `Reverse Co-Ed` | the word "reverse" in the listing |
 | `Open Play` | the phrase "open play" in the listing |
 
-iBeach listings are tagged `Sand` only. Most of them also name
-"iBeach Indoor Courts" alongside the sand courts, but those are treated as
-incidental overflow rather than a second surface. CCA listings are `Indoor`.
+**Surface means what you play on, not whether there is a roof.** `Indoor`
+means hard court; `Sand` includes indoor sand. This matters locally: iBeach
+has an indoor sand facility, so "iBeach Indoor Courts" is `Sand`, and the
+word "indoor" on its own is deliberately not evidence for the `Indoor` tag.
+
+An event gets at most one surface - it is never both sand and hard court.
+Resolution order is: grass, then a known venue, then the source default
+(CCA is hard court, iBeach is sand), then sand wording, then hard-court
+wording such as gym, fieldhouse or YMCA.
+
+Venues whose surface the name does not reveal live in `VENUE_SURFACE` in
+`indyvb/tags.py` - for example The Academy Volleyball Club is hard court
+despite the name. Add local knowledge there. If nothing matches, no surface
+tag is emitted rather than a guess.
 
 Discord caps a thread at 5 tags. Derivation is ordered so the kind is never the
 tag that gets trimmed, since the forum requires at least one.

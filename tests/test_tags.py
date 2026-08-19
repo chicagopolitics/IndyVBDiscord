@@ -95,10 +95,39 @@ class TestSurfaceTags:
                            venues=[Venue(id="1", name="Some Gym")])
         assert "Indoor" in surface_tags(event)
 
-    def test_grass_still_detected_for_a_sand_source(self):
-        """The early return for sand sources must not swallow Grass."""
+    def test_grass_wins_over_the_source_default(self):
+        """A grass event at a sand organiser is Grass, not both."""
         event = make_event(name="Summer Grass Doubles")
-        assert surface_tags(event) == {"Sand", "Grass"}
+        assert surface_tags(event) == {"Grass"}
+
+    def test_indoor_sand_is_sand_not_hard_court(self):
+        """Indoor says where, not what. iBeach has an indoor sand facility."""
+        event = make_event(source="groupme", name="Winter Indoor Sand League",
+                           venues=[Venue(id="1", name="Some Indoor Sand Facility")])
+        assert surface_tags(event) == {"Sand"}
+
+    def test_surface_is_never_contradictory(self):
+        """Sand and Indoor are different surfaces, never both."""
+        event = make_event(source="groupme", name="Indoor Sand Doubles at the gym")
+        assert len(surface_tags(event)) <= 1
+
+    def test_known_venue_overrides_an_unhelpful_name(self):
+        """"The Academy Volleyball Club" is hard court despite the name."""
+        event = make_event(source="groupme", name="Adult Open Play",
+                           description="Location: The Academy Volleyball Club")
+        assert surface_tags(event) == {"Indoor"}
+
+    def test_hard_court_signals(self):
+        for venue in ["Jordan YMCA", "First Baptist Fieldhouse", "Some Gymnasium"]:
+            event = make_event(source="groupme", name="Play",
+                               venues=[Venue(id="1", name=venue)])
+            assert surface_tags(event) == {"Indoor"}, venue
+
+    def test_unknown_venue_yields_no_surface(self):
+        """Better to emit no surface than to guess wrong."""
+        event = make_event(source="groupme", name="Pickup night",
+                           venues=[Venue(id="1", name="Unknown Place")])
+        assert surface_tags(event) == set()
 
     def test_ibeach_with_no_venues_defaults_to_sand(self):
         assert "Sand" in surface_tags(make_event(venues=[]))
