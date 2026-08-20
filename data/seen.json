@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T16:06:18+00:00",
+  "updated_at": "2026-08-20T16:21:08+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -122,10 +122,10 @@
       "last_seen": "2026-08-19T15:55:02+00:00"
     },
     "ibeach-leagues:league:106308": {
-      "fingerprint": "fbc21317d7d5d362",
+      "fingerprint": "c520f055ee16360c",
       "name": "Fall 2026 Wednesday Men's Work Up Competitive",
-      "start_date": "2026-09-02",
-      "last_seen": "2026-08-19T15:55:02+00:00"
+      "start_date": "2026-09-09",
+      "last_seen": "2026-08-20T16:21:08+00:00"
     },
     "ibeach-leagues:league:106298": {
       "fingerprint": "ef1656b7ab01547f",
@@ -210,6 +210,12 @@
       "name": "Bluefire Mens/Womens Doubles",
       "start_date": "2026-10-18",
       "last_seen": "2026-08-19T16:06:18+00:00"
+    },
+    "cca:league:106329": {
+      "fingerprint": "429bed7b41c89a8c",
+      "name": "Late Fall 2026 Wednesday Indoor Volleyball 6's League - FBA",
+      "start_date": "2026-10-14",
+      "last_seen": "2026-08-20T16:21:08+00:00"
     }
   }
 }
