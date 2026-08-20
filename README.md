@@ -380,6 +380,11 @@ Run the GroupMe half locally whenever you want:
 `.github/workflows/discord.yml` runs daily at 13:00 UTC and posts new or
 changed listings from the four web sources.
 
+It uses the same `--within 60 --open-only` filters as the seeding run. Those
+have to match: without them the first scheduled run posts everything the
+seed deliberately held back. With them the window rolls, so a league months
+out posts once it is 60 days away, and a closed one posts when it opens.
+
 It needs exactly one repository secret, **`DISCORD_WEBHOOK_URL`**
 (*Settings -> Secrets and variables -> Actions*). Optionally set a repository
 *variable* `DISCORD_USERNAME` to control the posting name. No bot token is

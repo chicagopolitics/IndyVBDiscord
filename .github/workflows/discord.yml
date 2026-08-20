@@ -47,10 +47,17 @@ jobs:
         # Without --allow-partial the run aborts if any source fails, so a
         # transient outage never records state for listings that never posted.
         # The next day's run picks them up.
+        # --within and --open-only must match how the forum was seeded, or the
+        # first scheduled run dumps every listing the seed deliberately held
+        # back: ones months out, and ones not yet open for signup. With the
+        # window, a far-off league posts when it comes within 60 days, and a
+        # closed one posts when it opens.
         run: |
           python -m indyvb.cli post \
             --new-only \
             --forum \
+            --within 60 \
+            --open-only \
             --source cca \
             --source cca-tournaments \
             --source ibeach-leagues \
