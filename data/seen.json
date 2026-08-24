@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-23T13:15:09+00:00",
+  "updated_at": "2026-08-24T13:22:20+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -86,22 +86,22 @@
       "last_seen": "2026-08-19T15:55:02+00:00"
     },
     "ibeach-leagues:league:105621": {
-      "fingerprint": "ec41d5e7afc0ce2b",
+      "fingerprint": "2263214778c1772b",
       "name": "Fall 2026 Monday Coed 4v4 Level B",
       "start_date": "2026-08-24",
-      "last_seen": "2026-08-19T15:55:02+00:00"
+      "last_seen": "2026-08-24T13:22:20+00:00"
     },
     "ibeach-leagues:league:105622": {
-      "fingerprint": "3060544f1edf1916",
+      "fingerprint": "95407c8d0e966a5b",
       "name": "Fall 2026 Monday Coed 4v4 Level BB/A",
       "start_date": "2026-08-24",
-      "last_seen": "2026-08-19T15:55:02+00:00"
+      "last_seen": "2026-08-24T13:22:20+00:00"
     },
     "ibeach-leagues:league:105620": {
-      "fingerprint": "76423fe9c420d578",
-      "name": "Fall 2026 Monday Coed 6v6 Level Recreational/B & BB",
+      "fingerprint": "a7e00b9e42efcf4b",
+      "name": "Fall 2026 Monday Coed 6v6 Level B/BB",
       "start_date": "2026-08-24",
-      "last_seen": "2026-08-19T15:55:02+00:00"
+      "last_seen": "2026-08-24T13:22:20+00:00"
     },
     "cca:league:101595": {
       "fingerprint": "c65d23ebd242af3c",
@@ -246,6 +246,12 @@
       "name": "Late Fall 2026 Thursday Volleyball 6's League - HRH YMCA (AVON)",
       "start_date": "2026-10-22",
       "last_seen": "2026-08-23T13:15:09+00:00"
+    },
+    "cca-tournaments:tournament:102366": {
+      "fingerprint": "99648c975bd81782",
+      "name": "OCTOBER 2026 COED 6'S INDOOR VOLLEYBALL TOURNAMENT",
+      "start_date": "2026-10-23",
+      "last_seen": "2026-08-24T13:22:20+00:00"
     }
   }
 }
