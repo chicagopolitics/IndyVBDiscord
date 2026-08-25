@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-24T13:22:20+00:00",
+  "updated_at": "2026-08-25T13:21:01+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -252,6 +252,24 @@
       "name": "OCTOBER 2026 COED 6'S INDOOR VOLLEYBALL TOURNAMENT",
       "start_date": "2026-10-23",
       "last_seen": "2026-08-24T13:22:20+00:00"
+    },
+    "ibeach-leagues:league:106748": {
+      "fingerprint": "194c22269e37f166",
+      "name": "2026 Sept Beach Training - Middle & High School advanced & intermediate",
+      "start_date": "2026-09-01",
+      "last_seen": "2026-08-25T13:21:01+00:00"
+    },
+    "ibeach-leagues:league:106751": {
+      "fingerprint": "e03dfa7b35fd9510",
+      "name": "2026 Fall Beginner Beach Clinic - Mondays 5-6p K-6th",
+      "start_date": "2026-09-21",
+      "last_seen": "2026-08-25T13:21:01+00:00"
+    },
+    "ibeach-tournaments:tournament:40181": {
+      "fingerprint": "014c26746b4484ba",
+      "name": "Bluefire Halloween Costume Contest",
+      "start_date": "2026-10-24",
+      "last_seen": "2026-08-25T13:21:01+00:00"
     }
   }
 }
