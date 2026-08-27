@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-26T13:23:53+00:00",
+  "updated_at": "2026-08-27T16:44:07+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -330,6 +330,30 @@
       "name": "iBeach JUNIORS AVPA 18-12u",
       "start_date": "2026-10-25",
       "last_seen": "2026-08-26T13:23:53+00:00"
+    },
+    "ibeach-leagues:league:106840": {
+      "fingerprint": "fbedaa5ebae322fa",
+      "name": "2026 Fall Adult Beach Volleyball Skills Clinic Mondays 6-7p",
+      "start_date": "2026-09-14",
+      "last_seen": "2026-08-27T16:44:07+00:00"
+    },
+    "cca:league:102735": {
+      "fingerprint": "98731625938329bb",
+      "name": "Late Fall 2026 Monday Indoor Volleyball 6's League - Academy Westfield",
+      "start_date": "2026-10-26",
+      "last_seen": "2026-08-27T16:44:07+00:00"
+    },
+    "cca:league:102726": {
+      "fingerprint": "4f5e337e33adf6dd",
+      "name": "Late Fall 2026 Monday Indoor Volleyball 6's League - Pro Net Sports - Fishers",
+      "start_date": "2026-10-26",
+      "last_seen": "2026-08-27T16:44:07+00:00"
+    },
+    "cca:league:102746": {
+      "fingerprint": "afd73f8df5c89828",
+      "name": "Late Fall 2026 Monday Indoor Volleyball 6's League - The Ark (Greenwood)",
+      "start_date": "2026-10-26",
+      "last_seen": "2026-08-27T16:44:07+00:00"
     }
   }
 }
