@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-27T16:44:07+00:00",
+  "updated_at": "2026-08-28T17:03:07+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -272,10 +272,10 @@
       "last_seen": "2026-08-25T13:21:01+00:00"
     },
     "ibeach-leagues:league:106803": {
-      "fingerprint": "06e147e5f1cffd27",
+      "fingerprint": "be7dc07360f0bdea",
       "name": "Friday Adult Open Play",
       "start_date": "2026-09-04",
-      "last_seen": "2026-08-26T13:23:53+00:00"
+      "last_seen": "2026-08-28T17:03:07+00:00"
     },
     "ibeach-leagues:league:106804": {
       "fingerprint": "59d471d529a64cee",
@@ -354,6 +354,30 @@
       "name": "Late Fall 2026 Monday Indoor Volleyball 6's League - The Ark (Greenwood)",
       "start_date": "2026-10-26",
       "last_seen": "2026-08-27T16:44:07+00:00"
+    },
+    "ibeach-leagues:league:106807": {
+      "fingerprint": "6a7f5eb98062dc48",
+      "name": "Friday Adult Open Play",
+      "start_date": "2026-10-02",
+      "last_seen": "2026-08-28T17:03:07+00:00"
+    },
+    "cca:league:102739": {
+      "fingerprint": "809910a1ee539dac",
+      "name": "Late Fall 2026 Tuesday Indoor Volleyball 6's League - JCC",
+      "start_date": "2026-10-27",
+      "last_seen": "2026-08-28T17:03:07+00:00"
+    },
+    "cca:league:102737": {
+      "fingerprint": "b58e9f2dbb008348",
+      "name": "Late Fall 2026 Tuesday Indoor Volleyball 6's League - Jordan YMCA",
+      "start_date": "2026-10-27",
+      "last_seen": "2026-08-28T17:03:07+00:00"
+    },
+    "cca:league:102727": {
+      "fingerprint": "84518d3bf6b83786",
+      "name": "Late Fall 2026 Tuesday Indoor Volleyball 6's League - Pro Net Sports - Fishers",
+      "start_date": "2026-10-27",
+      "last_seen": "2026-08-28T17:03:07+00:00"
     }
   }
 }
