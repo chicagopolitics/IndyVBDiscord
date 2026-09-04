@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-03T16:56:27+00:00",
+  "updated_at": "2026-09-04T16:44:17+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -278,10 +278,10 @@
       "last_seen": "2026-08-28T17:03:07+00:00"
     },
     "ibeach-leagues:league:106804": {
-      "fingerprint": "59d471d529a64cee",
+      "fingerprint": "b9fc7eb552bb7769",
       "name": "Friday Adult Open Play",
       "start_date": "2026-09-11",
-      "last_seen": "2026-08-26T13:23:53+00:00"
+      "last_seen": "2026-09-04T16:44:17+00:00"
     },
     "ibeach-tournaments:tournament:41098": {
       "fingerprint": "658df67f8fd1c06c",
@@ -384,6 +384,12 @@
       "name": "Late Fall 2026 Wednesday Downtown Indoor Volleyball 6's League - Fountain Square",
       "start_date": "2026-10-21",
       "last_seen": "2026-09-03T16:56:27+00:00"
+    },
+    "ibeach-leagues:league:106808": {
+      "fingerprint": "0b955f52e6a49902",
+      "name": "Friday Adult Open Play",
+      "start_date": "2026-10-09",
+      "last_seen": "2026-09-04T16:44:17+00:00"
     }
   }
 }
