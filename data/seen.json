@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-08T17:05:05+00:00",
+  "updated_at": "2026-09-10T16:54:01+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -396,6 +396,18 @@
       "name": "Bluefire Quads Classic '26",
       "start_date": "2026-11-07",
       "last_seen": "2026-09-08T17:05:05+00:00"
+    },
+    "ibeach-tournaments:tournament:41514": {
+      "fingerprint": "861f9b48d357db92",
+      "name": "Quads! 2026 Tattoo Tourney Coed Lottery - Sign up as Pair",
+      "start_date": "2026-09-20",
+      "last_seen": "2026-09-10T16:54:01+00:00"
+    },
+    "ibeach-tournaments:tournament:41524": {
+      "fingerprint": "0fc32115cace37be",
+      "name": "High School Dance Marathon Fundraiser Coed 4v4 (Zionsville HS)",
+      "start_date": "2026-09-27",
+      "last_seen": "2026-09-10T16:54:01+00:00"
     }
   }
 }
