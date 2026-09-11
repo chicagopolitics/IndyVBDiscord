@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-10T16:54:01+00:00",
+  "updated_at": "2026-09-11T16:55:23+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -290,10 +290,10 @@
       "last_seen": "2026-08-26T13:23:53+00:00"
     },
     "ibeach-leagues:league:106805": {
-      "fingerprint": "837f187eeba628f3",
+      "fingerprint": "cb4a06a362a3fa9f",
       "name": "Friday Adult Open Play",
       "start_date": "2026-09-18",
-      "last_seen": "2026-08-26T13:23:53+00:00"
+      "last_seen": "2026-09-11T16:55:23+00:00"
     },
     "cca-tournaments:tournament:106788": {
       "fingerprint": "1098b27b3f3cad72",
@@ -408,6 +408,12 @@
       "name": "High School Dance Marathon Fundraiser Coed 4v4 (Zionsville HS)",
       "start_date": "2026-09-27",
       "last_seen": "2026-09-10T16:54:01+00:00"
+    },
+    "ibeach-leagues:league:106809": {
+      "fingerprint": "6f8a2eea446bd225",
+      "name": "Friday Adult Open Play",
+      "start_date": "2026-10-16",
+      "last_seen": "2026-09-11T16:55:23+00:00"
     }
   }
 }
