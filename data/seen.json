@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-14T13:12:19+00:00",
+  "updated_at": "2026-09-15T13:12:18+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -480,6 +480,12 @@
       "name": "Indoor Fall 2026 Monday Coed 6v6 Level Rec/B or B/BB",
       "start_date": "2026-10-19",
       "last_seen": "2026-09-14T13:12:19+00:00"
+    },
+    "ibeach-tournaments:tournament:41100": {
+      "fingerprint": "11bb5d5c13ae37e9",
+      "name": "iBeach JUNIORS AVPA 18-12u",
+      "start_date": "2026-11-14",
+      "last_seen": "2026-09-15T13:12:18+00:00"
     }
   }
 }
