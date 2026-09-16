@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-15T13:12:18+00:00",
+  "updated_at": "2026-09-16T13:11:37+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -416,76 +416,112 @@
       "last_seen": "2026-09-11T16:55:23+00:00"
     },
     "ibeach-leagues:league:107412": {
-      "fingerprint": "0c82a9697920cceb",
+      "fingerprint": "a4ba1709c8608504",
       "name": "Indoor Fall 2026 Tuesday \"Cali\" Coed 2v2 Levels B/BB Intermediate",
       "start_date": "2026-10-13",
-      "last_seen": "2026-09-14T13:12:19+00:00"
+      "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-leagues:league:107411": {
-      "fingerprint": "60732b030497e79e",
+      "fingerprint": "eaca7b5642fb47b4",
       "name": "Indoor Fall 2026 Tuesday Coed 4v4 Level B (beginner intermediate) & BB (upper intermediate)",
       "start_date": "2026-10-13",
-      "last_seen": "2026-09-14T13:12:19+00:00"
+      "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-leagues:league:107409": {
-      "fingerprint": "fa0a66a58cd3fb6b",
+      "fingerprint": "6388b747558f7d65",
       "name": "Indoor Fall 2026 Tuesday Coed 6v6 Rec/Level B (beginner intermediate)",
       "start_date": "2026-10-13",
-      "last_seen": "2026-09-14T13:12:19+00:00"
+      "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-leagues:league:107410": {
-      "fingerprint": "1e93095ad1ee17c2",
+      "fingerprint": "67cc67d8b7bbe479",
       "name": "LATE NIGHT Indoor Fall 2026 Tuesday Coed 6v6 Rec/Level B (beginner intermediate)",
       "start_date": "2026-10-13",
-      "last_seen": "2026-09-14T13:12:19+00:00"
+      "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-leagues:league:107416": {
-      "fingerprint": "0b59caf6b32323ce",
+      "fingerprint": "beafd1c0268b88a8",
       "name": "Indoor Fall 2026 Thursday \"Cali\" Coed 2v2 Levels BB/A Upper Intermediate/Competitive",
       "start_date": "2026-10-15",
-      "last_seen": "2026-09-14T13:12:19+00:00"
+      "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-leagues:league:107415": {
-      "fingerprint": "edd67be6aa708f33",
+      "fingerprint": "1187e3609dc8a42c",
       "name": "Indoor Fall 2026 Thursday Coed 4v4 A (Competitive)",
       "start_date": "2026-10-15",
-      "last_seen": "2026-09-14T13:12:19+00:00"
+      "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-leagues:league:107414": {
-      "fingerprint": "1269d24ad1480966",
+      "fingerprint": "ef7ca040e59b9d87",
       "name": "Indoor Fall 2026 Thursday Coed 4v4 B/BB (intermediate)",
       "start_date": "2026-10-15",
-      "last_seen": "2026-09-14T13:12:19+00:00"
+      "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-leagues:league:107413": {
-      "fingerprint": "25b6a6637b77a4a2",
+      "fingerprint": "cbb76a108d8f93ea",
       "name": "Indoor Fall 2026 Thursday Coed 6v6 Level B/BB (intermediate)",
       "start_date": "2026-10-15",
-      "last_seen": "2026-09-14T13:12:19+00:00"
+      "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-leagues:league:107418": {
-      "fingerprint": "88779c009ee3bbd3",
+      "fingerprint": "78a8e78e6bee189c",
       "name": "Indoor Fall 2026 Monday Coed 4v4 Level B/BB",
       "start_date": "2026-10-19",
-      "last_seen": "2026-09-14T13:12:19+00:00"
+      "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-leagues:league:107419": {
-      "fingerprint": "fc0c17a2aa84872f",
+      "fingerprint": "01d53020ef0d8290",
       "name": "Indoor Fall 2026 Monday Coed 4v4 Level BB/A",
       "start_date": "2026-10-19",
-      "last_seen": "2026-09-14T13:12:19+00:00"
+      "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-leagues:league:107417": {
-      "fingerprint": "79006a9cbf596e3c",
+      "fingerprint": "218d70e61311696f",
       "name": "Indoor Fall 2026 Monday Coed 6v6 Level Rec/B or B/BB",
       "start_date": "2026-10-19",
-      "last_seen": "2026-09-14T13:12:19+00:00"
+      "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-tournaments:tournament:41100": {
       "fingerprint": "11bb5d5c13ae37e9",
       "name": "iBeach JUNIORS AVPA 18-12u",
       "start_date": "2026-11-14",
       "last_seen": "2026-09-15T13:12:18+00:00"
+    },
+    "ibeach-leagues:league:107464": {
+      "fingerprint": "b6da5168977948b9",
+      "name": "Indoor Fall 2026 Wednesday Coed 4v4 Level B/BB",
+      "start_date": "2026-10-14",
+      "last_seen": "2026-09-16T13:11:37+00:00"
+    },
+    "ibeach-leagues:league:107463": {
+      "fingerprint": "c34da204a5d73c33",
+      "name": "Indoor Fall 2026 Wednesday Reverse Coed 4v4 Level A/BB",
+      "start_date": "2026-10-14",
+      "last_seen": "2026-09-16T13:11:37+00:00"
+    },
+    "ibeach-leagues:league:107467": {
+      "fingerprint": "c1676ee16b9d2a0f",
+      "name": "Indoor Fall 2026 Sunday Coed 4v4 Level B/BB(beginner intermediate)",
+      "start_date": "2026-10-18",
+      "last_seen": "2026-09-16T13:11:37+00:00"
+    },
+    "ibeach-leagues:league:107465": {
+      "fingerprint": "0394b6cbe3da5af5",
+      "name": "Indoor Fall 2026 Sunday Coed 6v6 Levels Recreational, B (beginner intermediate), and B/BB (intermediate)",
+      "start_date": "2026-10-18",
+      "last_seen": "2026-09-16T13:11:37+00:00"
+    },
+    "ibeach-leagues:league:107466": {
+      "fingerprint": "a929425348db01ab",
+      "name": "Indoor Fall 2026 Sunday Women's 4v4 Level B/BB (beginner intermediate/upper intermediate)",
+      "start_date": "2026-10-18",
+      "last_seen": "2026-09-16T13:11:37+00:00"
+    },
+    "ibeach-tournaments:tournament:40313": {
+      "fingerprint": "3607d070f8e39c55",
+      "name": "Bluefire COED Reverse 4v4",
+      "start_date": "2026-11-15",
+      "last_seen": "2026-09-16T13:11:37+00:00"
     }
   }
 }
