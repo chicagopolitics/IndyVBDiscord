@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-16T13:11:37+00:00",
+  "updated_at": "2026-09-18T13:10:51+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -302,10 +302,10 @@
       "last_seen": "2026-08-26T13:23:53+00:00"
     },
     "ibeach-leagues:league:106806": {
-      "fingerprint": "0841fdf26c357550",
+      "fingerprint": "67c00b7427b5c8ef",
       "name": "Friday Adult Open Play",
       "start_date": "2026-09-25",
-      "last_seen": "2026-08-26T13:23:53+00:00"
+      "last_seen": "2026-09-18T13:10:51+00:00"
     },
     "cca:league:102733": {
       "fingerprint": "4e8bdd2d1c238ad7",
@@ -522,6 +522,30 @@
       "name": "Bluefire COED Reverse 4v4",
       "start_date": "2026-11-15",
       "last_seen": "2026-09-16T13:11:37+00:00"
+    },
+    "ibeach-leagues:league:107536": {
+      "fingerprint": "8b5a619892f88212",
+      "name": "Indoor Fall 2026 Wednesday Women's Partner Competitive 2v2",
+      "start_date": "2026-10-14",
+      "last_seen": "2026-09-18T13:10:51+00:00"
+    },
+    "ibeach-leagues:league:107532": {
+      "fingerprint": "99889321c6ca8a60",
+      "name": "Indoor Fall 2026 Sunday Coed 2v2 Level B",
+      "start_date": "2026-10-18",
+      "last_seen": "2026-09-18T13:10:51+00:00"
+    },
+    "ibeach-leagues:league:107531": {
+      "fingerprint": "bc664cbd08b5c98f",
+      "name": "NEW Indoor Fall 2026 Sunday Men's 2v2 Level B/BB",
+      "start_date": "2026-10-18",
+      "last_seen": "2026-09-18T13:10:51+00:00"
+    },
+    "ibeach-leagues:league:106810": {
+      "fingerprint": "4e8d9ed25899948a",
+      "name": "Friday Adult Open Play",
+      "start_date": "2026-10-23",
+      "last_seen": "2026-09-18T13:10:51+00:00"
     }
   }
 }
