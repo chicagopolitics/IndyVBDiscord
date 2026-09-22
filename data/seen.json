@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-19T13:10:07+00:00",
+  "updated_at": "2026-09-22T13:11:53+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -546,6 +546,12 @@
       "name": "Friday Adult Open Play",
       "start_date": "2026-10-23",
       "last_seen": "2026-09-18T13:10:51+00:00"
+    },
+    "ibeach-tournaments:tournament:40314": {
+      "fingerprint": "8c48f7ac59e43746",
+      "name": "Bluefire Quads Classic",
+      "start_date": "2026-11-21",
+      "last_seen": "2026-09-22T13:11:53+00:00"
     }
   }
 }
