@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-23T13:11:26+00:00",
+  "updated_at": "2026-09-25T13:11:28+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -356,10 +356,10 @@
       "last_seen": "2026-08-27T16:44:07+00:00"
     },
     "ibeach-leagues:league:106807": {
-      "fingerprint": "6a7f5eb98062dc48",
+      "fingerprint": "c5a685294b936fcb",
       "name": "Friday Adult Open Play",
       "start_date": "2026-10-02",
-      "last_seen": "2026-08-28T17:03:07+00:00"
+      "last_seen": "2026-09-25T13:11:28+00:00"
     },
     "cca:league:102739": {
       "fingerprint": "809910a1ee539dac",
@@ -564,6 +564,12 @@
       "name": "iBeach JUNIORS AVPA 18-12u '26 COPY",
       "start_date": "2026-11-22",
       "last_seen": "2026-09-23T13:11:26+00:00"
+    },
+    "ibeach-leagues:league:106811": {
+      "fingerprint": "caa6cd3bb4962e87",
+      "name": "Friday Adult Open Play",
+      "start_date": "2026-10-30",
+      "last_seen": "2026-09-25T13:11:28+00:00"
     }
   }
 }
