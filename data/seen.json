@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-01T13:15:08+00:00",
+  "updated_at": "2026-10-02T18:13:01+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -212,10 +212,10 @@
       "last_seen": "2026-08-19T16:06:18+00:00"
     },
     "cca:league:106329": {
-      "fingerprint": "58ca61ffd2b8c63f",
+      "fingerprint": "f113fbab1f7fd5c3",
       "name": "Late Fall 2026 Wednesday Indoor Volleyball 6's League - FBA",
       "start_date": "2026-10-21",
-      "last_seen": "2026-09-03T16:56:27+00:00"
+      "last_seen": "2026-10-02T18:13:01+00:00"
     },
     "cca:league:102736": {
       "fingerprint": "9b6ac49b31a1c122",
@@ -230,10 +230,10 @@
       "last_seen": "2026-08-22T13:14:15+00:00"
     },
     "cca:league:102722": {
-      "fingerprint": "acfa97c808d5d1ff",
+      "fingerprint": "d60f8a05098a1881",
       "name": "Late Fall 2026 Thursday Indoor Volleyball 6's League - FBA",
       "start_date": "2026-10-22",
-      "last_seen": "2026-08-23T13:15:09+00:00"
+      "last_seen": "2026-10-02T18:13:01+00:00"
     },
     "cca:league:102729": {
       "fingerprint": "0790666be3c8551f",
@@ -386,10 +386,10 @@
       "last_seen": "2026-09-03T16:56:27+00:00"
     },
     "ibeach-leagues:league:106808": {
-      "fingerprint": "0b955f52e6a49902",
+      "fingerprint": "aee880d7b58e4049",
       "name": "Friday Adult Open Play",
       "start_date": "2026-10-09",
-      "last_seen": "2026-09-04T16:44:17+00:00"
+      "last_seen": "2026-10-02T18:13:01+00:00"
     },
     "ibeach-tournaments:tournament:40312": {
       "fingerprint": "5c055922170e03bb",
