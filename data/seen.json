@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-02T18:13:01+00:00",
+  "updated_at": "2026-10-03T16:59:49+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -344,10 +344,10 @@
       "last_seen": "2026-08-27T16:44:07+00:00"
     },
     "cca:league:102726": {
-      "fingerprint": "4f5e337e33adf6dd",
+      "fingerprint": "c8ea9ea4de5c0528",
       "name": "Late Fall 2026 Monday Indoor Volleyball 6's League - Pro Net Sports - Fishers",
       "start_date": "2026-10-26",
-      "last_seen": "2026-08-27T16:44:07+00:00"
+      "last_seen": "2026-10-03T16:59:49+00:00"
     },
     "cca:league:102746": {
       "fingerprint": "afd73f8df5c89828",
@@ -570,6 +570,12 @@
       "name": "Friday Adult Open Play",
       "start_date": "2026-10-30",
       "last_seen": "2026-09-25T13:11:28+00:00"
+    },
+    "ibeach-leagues:league:108032": {
+      "fingerprint": "81d90bd14ca8538f",
+      "name": "2026 October Beach Training - Middle & High School advanced & intermediate",
+      "start_date": "2026-10-05",
+      "last_seen": "2026-10-03T16:59:49+00:00"
     }
   }
 }
