@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03T16:59:49+00:00",
+  "updated_at": "2026-10-05T21:08:40+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -200,10 +200,10 @@
       "last_seen": "2026-09-30T13:16:02+00:00"
     },
     "ibeach-tournaments:tournament:40179": {
-      "fingerprint": "038150ab5dbf5c3e",
-      "name": "Bluefire Quads Classic - BYOP Lottery",
+      "fingerprint": "caac3c24fc38b49a",
+      "name": "Naptown Nitro Women's Fundraiser Coed 4 (Lottery - sign up as a pair)",
       "start_date": "2026-10-10",
-      "last_seen": "2026-08-19T16:06:18+00:00"
+      "last_seen": "2026-10-05T21:08:40+00:00"
     },
     "ibeach-tournaments:tournament:40180": {
       "fingerprint": "1f867df13685bdbe",
@@ -576,6 +576,12 @@
       "name": "2026 October Beach Training - Middle & High School advanced & intermediate",
       "start_date": "2026-10-05",
       "last_seen": "2026-10-03T16:59:49+00:00"
+    },
+    "cca:league:108229": {
+      "fingerprint": "d7f45da497d0efdb",
+      "name": "Late Fall 2026 Tuesday Indoor Volleyball 6's League - FBA (NEW LEAGUE)",
+      "start_date": "2026-10-27",
+      "last_seen": "2026-10-05T21:08:40+00:00"
     }
   }
 }
