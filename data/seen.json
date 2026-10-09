@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-08T19:09:10+00:00",
+  "updated_at": "2026-10-09T18:39:42+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -212,10 +212,10 @@
       "last_seen": "2026-08-19T16:06:18+00:00"
     },
     "cca:league:106329": {
-      "fingerprint": "58ca61ffd2b8c63f",
+      "fingerprint": "f113fbab1f7fd5c3",
       "name": "Late Fall 2026 Wednesday Indoor Volleyball 6's League - FBA",
       "start_date": "2026-10-21",
-      "last_seen": "2026-10-08T19:09:10+00:00"
+      "last_seen": "2026-10-09T18:39:42+00:00"
     },
     "cca:league:102736": {
       "fingerprint": "9b6ac49b31a1c122",
@@ -224,10 +224,10 @@
       "last_seen": "2026-08-22T13:14:15+00:00"
     },
     "cca:league:102728": {
-      "fingerprint": "f01910be45d88182",
+      "fingerprint": "3e7fa4e00f3f98c6",
       "name": "Late Fall 2026 Wednesday Indoor Volleyball 6's League - Pro Net Sports - Fishers",
       "start_date": "2026-10-21",
-      "last_seen": "2026-08-22T13:14:15+00:00"
+      "last_seen": "2026-10-09T18:39:42+00:00"
     },
     "cca:league:102722": {
       "fingerprint": "d60f8a05098a1881",
@@ -362,10 +362,10 @@
       "last_seen": "2026-09-25T13:11:28+00:00"
     },
     "cca:league:102739": {
-      "fingerprint": "809910a1ee539dac",
+      "fingerprint": "40d6935d1fff2e5a",
       "name": "Late Fall 2026 Tuesday Indoor Volleyball 6's League - JCC",
       "start_date": "2026-10-27",
-      "last_seen": "2026-08-28T17:03:07+00:00"
+      "last_seen": "2026-10-09T18:39:42+00:00"
     },
     "cca:league:102737": {
       "fingerprint": "cc994fa285974ed9",
@@ -374,10 +374,10 @@
       "last_seen": "2026-09-23T13:11:26+00:00"
     },
     "cca:league:102727": {
-      "fingerprint": "219c68cb15ae81d2",
+      "fingerprint": "84518d3bf6b83786",
       "name": "Late Fall 2026 Tuesday Indoor Volleyball 6's League - Pro Net Sports - Fishers",
       "start_date": "2026-10-27",
-      "last_seen": "2026-10-01T13:15:08+00:00"
+      "last_seen": "2026-10-09T18:39:42+00:00"
     },
     "cca:league:107047": {
       "fingerprint": "d79d00a903792cfb",
@@ -410,10 +410,10 @@
       "last_seen": "2026-09-10T16:54:01+00:00"
     },
     "ibeach-leagues:league:106809": {
-      "fingerprint": "6f8a2eea446bd225",
+      "fingerprint": "3bf0b2ebcaceb200",
       "name": "Friday Adult Open Play",
       "start_date": "2026-10-16",
-      "last_seen": "2026-09-11T16:55:23+00:00"
+      "last_seen": "2026-10-09T18:39:42+00:00"
     },
     "ibeach-leagues:league:107412": {
       "fingerprint": "a4ba1709c8608504",
@@ -588,6 +588,12 @@
       "name": "Bluefire Winter Open",
       "start_date": "2026-12-05",
       "last_seen": "2026-10-06T18:46:50+00:00"
+    },
+    "ibeach-leagues:league:108298": {
+      "fingerprint": "220c42e28c520ba6",
+      "name": "Indoor Fall 2026 Wednesday Men's 2s Work Up Competitive (A)",
+      "start_date": "2026-11-04",
+      "last_seen": "2026-10-09T18:39:42+00:00"
     }
   }
 }
