@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T13:12:21+00:00",
+  "updated_at": "2026-10-16T13:11:34+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -542,10 +542,10 @@
       "last_seen": "2026-09-18T13:10:51+00:00"
     },
     "ibeach-leagues:league:106810": {
-      "fingerprint": "4e8d9ed25899948a",
+      "fingerprint": "3e51b275cf3feb0a",
       "name": "Friday Adult Open Play",
       "start_date": "2026-10-23",
-      "last_seen": "2026-09-18T13:10:51+00:00"
+      "last_seen": "2026-10-16T13:11:34+00:00"
     },
     "ibeach-tournaments:tournament:40314": {
       "fingerprint": "8c48f7ac59e43746",
@@ -594,6 +594,18 @@
       "name": "Indoor Fall 2026 Wednesday Men's 2s Work Up Competitive (A)",
       "start_date": "2026-11-04",
       "last_seen": "2026-10-09T18:39:42+00:00"
+    },
+    "ibeach-leagues:league:108421": {
+      "fingerprint": "aaad99b409ca52e1",
+      "name": "Indoor Winter 2026 Tuesday Coed 6v6 Rec/Level B (beginner intermediate)",
+      "start_date": "2026-12-08",
+      "last_seen": "2026-10-16T13:11:34+00:00"
+    },
+    "ibeach-leagues:league:108420": {
+      "fingerprint": "3303d6d50b54b172",
+      "name": "LATE NIGHT Indoor Winter 2026 Tuesday Coed 6v6 Rec/Level B (beginner intermediate)",
+      "start_date": "2026-12-08",
+      "last_seen": "2026-10-16T13:11:34+00:00"
     }
   }
 }
