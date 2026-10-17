@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T13:11:34+00:00",
+  "updated_at": "2026-10-17T13:09:12+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -506,10 +506,10 @@
       "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-leagues:league:107465": {
-      "fingerprint": "0394b6cbe3da5af5",
-      "name": "Indoor Fall 2026 Sunday Coed 6v6 Levels Recreational, B (beginner intermediate), and B/BB (intermediate)",
+      "fingerprint": "8b9b3f63eb1e4216",
+      "name": "Indoor Fall 2026 Sunday Coed 6v6 Levels Rec/B/BB",
       "start_date": "2026-10-18",
-      "last_seen": "2026-09-16T13:11:37+00:00"
+      "last_seen": "2026-10-17T13:09:12+00:00"
     },
     "ibeach-leagues:league:107466": {
       "fingerprint": "a929425348db01ab",
@@ -530,10 +530,10 @@
       "last_seen": "2026-10-12T13:33:36+00:00"
     },
     "ibeach-leagues:league:107532": {
-      "fingerprint": "99889321c6ca8a60",
+      "fingerprint": "c87ed8a2c4cd7cf5",
       "name": "Indoor Fall 2026 Sunday Coed 2v2 Level B",
       "start_date": "2026-10-18",
-      "last_seen": "2026-09-18T13:10:51+00:00"
+      "last_seen": "2026-10-17T13:09:12+00:00"
     },
     "ibeach-leagues:league:107531": {
       "fingerprint": "bc664cbd08b5c98f",
@@ -606,6 +606,12 @@
       "name": "LATE NIGHT Indoor Winter 2026 Tuesday Coed 6v6 Rec/Level B (beginner intermediate)",
       "start_date": "2026-12-08",
       "last_seen": "2026-10-16T13:11:34+00:00"
+    },
+    "ibeach-leagues:league:108424": {
+      "fingerprint": "81131c8817977200",
+      "name": "2026 November Adult Beach Vball Skills Clinic Fridays 6-7p",
+      "start_date": "2026-11-06",
+      "last_seen": "2026-10-17T13:09:12+00:00"
     }
   }
 }
