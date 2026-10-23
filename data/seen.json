@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-22T13:12:19+00:00",
+  "updated_at": "2026-10-23T13:10:23+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -566,10 +566,10 @@
       "last_seen": "2026-09-23T13:11:26+00:00"
     },
     "ibeach-leagues:league:106811": {
-      "fingerprint": "caa6cd3bb4962e87",
+      "fingerprint": "72e25917c8e6fa35",
       "name": "Friday Adult Open Play",
       "start_date": "2026-10-30",
-      "last_seen": "2026-09-25T13:11:28+00:00"
+      "last_seen": "2026-10-23T13:10:23+00:00"
     },
     "ibeach-leagues:league:108032": {
       "fingerprint": "81d90bd14ca8538f",
