@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23T13:10:23+00:00",
+  "updated_at": "2026-10-24T13:09:49+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -618,6 +618,12 @@
       "name": "Bluefire New Years Eve Party",
       "start_date": "2026-12-19",
       "last_seen": "2026-10-20T13:12:28+00:00"
+    },
+    "cca-tournaments:tournament:102367": {
+      "fingerprint": "38e1df441c143395",
+      "name": "NOVEMBER 2026 COED 6'S INDOOR VOLLEYBALL TOURNAMENT",
+      "start_date": "2026-11-13",
+      "last_seen": "2026-10-24T13:09:49+00:00"
     }
   }
 }
