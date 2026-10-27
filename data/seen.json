@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T13:09:49+00:00",
+  "updated_at": "2026-10-27T13:16:14+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -596,16 +596,16 @@
       "last_seen": "2026-10-09T18:39:42+00:00"
     },
     "ibeach-leagues:league:108421": {
-      "fingerprint": "aaad99b409ca52e1",
+      "fingerprint": "0b821d5bc23383b2",
       "name": "Indoor Winter 2026 Tuesday Coed 6v6 Rec/Level B (beginner intermediate)",
       "start_date": "2026-12-08",
-      "last_seen": "2026-10-16T13:11:34+00:00"
+      "last_seen": "2026-10-27T13:16:14+00:00"
     },
     "ibeach-leagues:league:108420": {
-      "fingerprint": "3303d6d50b54b172",
+      "fingerprint": "50b307fa0607a7ef",
       "name": "LATE NIGHT Indoor Winter 2026 Tuesday Coed 6v6 Rec/Level B (beginner intermediate)",
       "start_date": "2026-12-08",
-      "last_seen": "2026-10-16T13:11:34+00:00"
+      "last_seen": "2026-10-27T13:16:14+00:00"
     },
     "ibeach-leagues:league:108424": {
       "fingerprint": "81131c8817977200",
@@ -624,6 +624,36 @@
       "name": "NOVEMBER 2026 COED 6'S INDOOR VOLLEYBALL TOURNAMENT",
       "start_date": "2026-11-13",
       "last_seen": "2026-10-24T13:09:49+00:00"
+    },
+    "ibeach-leagues:league:108939": {
+      "fingerprint": "a9b50632559b0381",
+      "name": "2026 Nov/Dec Beach Training - Middle & High School advanced & intermediate",
+      "start_date": "2026-11-02",
+      "last_seen": "2026-10-27T13:16:14+00:00"
+    },
+    "ibeach-leagues:league:108684": {
+      "fingerprint": "f10eaafcf4c7de86",
+      "name": "Indoor Winter 2026 Tuesday Coed 4v4 Level B (beginner intermediate) & BB (upper intermediate)",
+      "start_date": "2026-12-08",
+      "last_seen": "2026-10-27T13:16:14+00:00"
+    },
+    "ibeach-leagues:league:108682": {
+      "fingerprint": "d12fb962a6c5d15d",
+      "name": "Indoor Winter 2026 Sunday Coed 6v6 Levels Rec/B/BB",
+      "start_date": "2026-12-13",
+      "last_seen": "2026-10-27T13:16:14+00:00"
+    },
+    "ibeach-leagues:league:108683": {
+      "fingerprint": "746e8de49c96a8f5",
+      "name": "Indoor Winter 2026 Monday Coed 6v6 Level Rec/B or B/BB",
+      "start_date": "2026-12-14",
+      "last_seen": "2026-10-27T13:16:14+00:00"
+    },
+    "ibeach-leagues:league:108681": {
+      "fingerprint": "2b07f5151671a457",
+      "name": "Indoor Winter 2026 Thursday Coed 6v6 Level B/BB (intermediate)",
+      "start_date": "2026-12-17",
+      "last_seen": "2026-10-27T13:16:14+00:00"
     }
   }
 }
