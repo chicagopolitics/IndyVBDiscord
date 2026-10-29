@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-27T13:16:14+00:00",
+  "updated_at": "2026-10-29T13:08:54+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -608,10 +608,10 @@
       "last_seen": "2026-10-27T13:16:14+00:00"
     },
     "ibeach-leagues:league:108424": {
-      "fingerprint": "81131c8817977200",
-      "name": "2026 November Adult Beach Vball Skills Clinic Fridays 6-7p",
+      "fingerprint": "03327a294119cade",
+      "name": "2026 Nov/Dec Adult Beach Vball Skills Clinic Fridays 6-7p",
       "start_date": "2026-11-06",
-      "last_seen": "2026-10-17T13:09:12+00:00"
+      "last_seen": "2026-10-29T13:08:54+00:00"
     },
     "ibeach-tournaments:tournament:40316": {
       "fingerprint": "3c0f0414c3e14a59",
