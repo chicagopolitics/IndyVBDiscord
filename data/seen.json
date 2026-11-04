@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-02T13:09:31+00:00",
+  "updated_at": "2026-11-04T13:07:42+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -726,6 +726,36 @@
       "name": "Indoor Winter 2026 Thursday Coed 4v4 B/BB (intermediate)",
       "start_date": "2026-12-17",
       "last_seen": "2026-11-02T13:09:31+00:00"
+    },
+    "ibeach-leagues:league:109177": {
+      "fingerprint": "bc260cdd93b15145",
+      "name": "Friday Adult Open Play",
+      "start_date": "2026-11-06",
+      "last_seen": "2026-11-04T13:07:42+00:00"
+    },
+    "ibeach-leagues:league:109178": {
+      "fingerprint": "49422e358f855e1d",
+      "name": "Friday Adult Open Play",
+      "start_date": "2026-11-13",
+      "last_seen": "2026-11-04T13:07:42+00:00"
+    },
+    "ibeach-leagues:league:109179": {
+      "fingerprint": "831edccd437c78e4",
+      "name": "Friday Adult Open Play",
+      "start_date": "2026-11-20",
+      "last_seen": "2026-11-04T13:07:42+00:00"
+    },
+    "ibeach-leagues:league:109180": {
+      "fingerprint": "20d29b9d3aaa9e52",
+      "name": "Friday Adult Open Play",
+      "start_date": "2026-11-27",
+      "last_seen": "2026-11-04T13:07:42+00:00"
+    },
+    "ibeach-leagues:league:109181": {
+      "fingerprint": "f5680bd21074039e",
+      "name": "Friday Adult Open Play",
+      "start_date": "2026-12-04",
+      "last_seen": "2026-11-04T13:07:42+00:00"
     }
   }
 }
