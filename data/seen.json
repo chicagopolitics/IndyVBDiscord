@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-10T13:07:34+00:00",
+  "updated_at": "2026-11-11T13:08:09+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -482,10 +482,10 @@
       "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-tournaments:tournament:41100": {
-      "fingerprint": "11bb5d5c13ae37e9",
+      "fingerprint": "2f3bf884b7aac6a3",
       "name": "iBeach JUNIORS AVPA 18-12u",
       "start_date": "2026-11-14",
-      "last_seen": "2026-09-15T13:12:18+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:107464": {
       "fingerprint": "b6da5168977948b9",
@@ -596,10 +596,10 @@
       "last_seen": "2026-10-09T18:39:42+00:00"
     },
     "ibeach-leagues:league:108421": {
-      "fingerprint": "cab31cbeaf9b1f3d",
+      "fingerprint": "6816e466971b5dac",
       "name": "Indoor Winter 2026 Tuesday Coed 6v6 Rec/Level B (beginner intermediate)",
       "start_date": "2026-12-08",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:108420": {
       "fingerprint": "50b307fa0607a7ef",
@@ -632,100 +632,100 @@
       "last_seen": "2026-10-27T13:16:14+00:00"
     },
     "ibeach-leagues:league:108684": {
-      "fingerprint": "d00950650945a77a",
+      "fingerprint": "37b2fe27939079ea",
       "name": "Indoor Winter 2026 Tuesday Coed 4v4 Level B (beginner intermediate) & BB (upper intermediate)",
       "start_date": "2026-12-08",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:108682": {
-      "fingerprint": "819fc4a0ac33f9dd",
+      "fingerprint": "91f8909c2c563858",
       "name": "Indoor Winter 2026 Sunday Coed 6v6 Levels Rec/B/BB",
       "start_date": "2026-12-13",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:108683": {
-      "fingerprint": "4f1553fcbea497e2",
+      "fingerprint": "e7304a76c6ba84f1",
       "name": "Indoor Winter 2026 Monday Coed 6v6 Level Rec/B or B/BB",
       "start_date": "2026-12-14",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:108681": {
-      "fingerprint": "949a55a370604d0a",
+      "fingerprint": "cc4edd60c696a3b8",
       "name": "Indoor Winter 2026 Thursday Coed 6v6 Level B/BB (intermediate)",
       "start_date": "2026-12-17",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:109125": {
-      "fingerprint": "d6cb2b19f663c5e1",
+      "fingerprint": "ec39d217a8b8f4f9",
       "name": "Indoor Winter 2026 Tuesday \"Cali\" Coed 2v2 Levels B/BB Intermediate",
       "start_date": "2026-12-08",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:109116": {
-      "fingerprint": "4fab1a43f8584bd0",
+      "fingerprint": "550a737a0bfb5919",
       "name": "Indoor Winter 2026 Wednesday Reverse Coed 4v4 Level A/BB",
       "start_date": "2026-12-16",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:109127": {
-      "fingerprint": "ea8f4cf645f8a87f",
+      "fingerprint": "1c3dc5f268ddddc8",
       "name": "Indoor Winter 2026 Wednesday Women's Partner Competitive 2v2",
       "start_date": "2026-12-16",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:109130": {
-      "fingerprint": "14bec0c6655742be",
+      "fingerprint": "b4cc982a22b3aad0",
       "name": "Indoor Winter 2026 Sunday Coed 2v2 Level B",
       "start_date": "2026-12-13",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:109119": {
-      "fingerprint": "f9b7f266806d6afa",
+      "fingerprint": "4088d91df5baa15b",
       "name": "Indoor Winter 2026 Sunday Coed 4v4 Level B/BB(beginner intermediate)",
       "start_date": "2026-12-13",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:109131": {
-      "fingerprint": "510ae2fdbca69827",
+      "fingerprint": "c028f5924422e5d7",
       "name": "Indoor Winter 2026 Sunday Men's 2v2 Level B/BB",
       "start_date": "2026-12-13",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:109120": {
-      "fingerprint": "eef3cab23a47068d",
+      "fingerprint": "dd0f3bd04c56bae4",
       "name": "Indoor Winter 2026 Sunday Women's 4v4 Level B/BB (beginner intermediate/upper intermediate)",
       "start_date": "2026-12-13",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:109123": {
-      "fingerprint": "28aff4ff3e96c0ae",
+      "fingerprint": "5a70fafbff5bd9a6",
       "name": "Indoor Winter 2026 Monday Coed 4v4 Level B/BB",
       "start_date": "2026-12-14",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:109122": {
-      "fingerprint": "64ad425f1509250c",
+      "fingerprint": "f726b008b0c0cee8",
       "name": "Indoor Winter 2026 Monday Coed 4v4 Level BB/A",
       "start_date": "2026-12-14",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:109128": {
-      "fingerprint": "87baf9e811d5f38f",
+      "fingerprint": "487948c6def5eddd",
       "name": "Indoor Winter 2026 Thursday Coed 2v2 Levels BB/A Upper Intermediate/Competitive",
       "start_date": "2026-12-17",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:109117": {
-      "fingerprint": "22fd3a61015d68b3",
+      "fingerprint": "ca6ccf7713d77558",
       "name": "Indoor Winter 2026 Thursday Coed 4v4 A (Competitive)",
       "start_date": "2026-12-17",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:109118": {
-      "fingerprint": "d93ff7bef6528684",
+      "fingerprint": "a01c5ceaf0b59801",
       "name": "Indoor Winter 2026 Thursday Coed 4v4 B/BB (intermediate)",
       "start_date": "2026-12-17",
-      "last_seen": "2026-11-08T13:06:36+00:00"
+      "last_seen": "2026-11-11T13:08:09+00:00"
     },
     "ibeach-leagues:league:109177": {
       "fingerprint": "bc260cdd93b15145",
@@ -768,6 +768,18 @@
       "name": "iBeach Mens/Women 2s A & BB",
       "start_date": "2026-12-12",
       "last_seen": "2026-11-10T13:07:34+00:00"
+    },
+    "ibeach-tournaments:tournament:42743": {
+      "fingerprint": "6dd71ebe66e1a48f",
+      "name": "Coed 4 - Jingle Bell Jackpot $1000 , Sunday 12.20.26",
+      "start_date": "2026-12-20",
+      "last_seen": "2026-11-11T13:08:09+00:00"
+    },
+    "ibeach-tournaments:tournament:42744": {
+      "fingerprint": "308e331c8715bb07",
+      "name": "COED 2v2 - Hawaiian Holiday Doubles - Tuesday 12.22.26",
+      "start_date": "2026-12-22",
+      "last_seen": "2026-11-11T13:08:09+00:00"
     }
   }
 }
