@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11T13:08:09+00:00",
+  "updated_at": "2026-11-12T13:07:32+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -482,10 +482,10 @@
       "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-tournaments:tournament:41100": {
-      "fingerprint": "2f3bf884b7aac6a3",
+      "fingerprint": "3d398a7927499a64",
       "name": "iBeach JUNIORS AVPA 18-12u",
       "start_date": "2026-11-14",
-      "last_seen": "2026-11-11T13:08:09+00:00"
+      "last_seen": "2026-11-12T13:07:32+00:00"
     },
     "ibeach-leagues:league:107464": {
       "fingerprint": "b6da5168977948b9",
@@ -560,10 +560,10 @@
       "last_seen": "2026-09-23T13:11:26+00:00"
     },
     "ibeach-tournaments:tournament:41101": {
-      "fingerprint": "ef699a5fe521bdee",
-      "name": "iBeach JUNIORS AVPA 18-12u '26 COPY",
+      "fingerprint": "86a9e4659d778464",
+      "name": "iBeach JUNIORS AVPA 18-12u",
       "start_date": "2026-11-22",
-      "last_seen": "2026-09-23T13:11:26+00:00"
+      "last_seen": "2026-11-12T13:07:32+00:00"
     },
     "ibeach-leagues:league:106811": {
       "fingerprint": "72e25917c8e6fa35",
@@ -780,6 +780,12 @@
       "name": "COED 2v2 - Hawaiian Holiday Doubles - Tuesday 12.22.26",
       "start_date": "2026-12-22",
       "last_seen": "2026-11-11T13:08:09+00:00"
+    },
+    "ibeach-tournaments:tournament:42753": {
+      "fingerprint": "574604b416675a07",
+      "name": "iBeach JUNIORS AVPA 18-12u",
+      "start_date": "2026-12-05",
+      "last_seen": "2026-11-12T13:07:32+00:00"
     }
   }
 }
