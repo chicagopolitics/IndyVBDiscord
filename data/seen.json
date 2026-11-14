@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-13T13:07:48+00:00",
+  "updated_at": "2026-11-14T13:06:15+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -482,10 +482,10 @@
       "last_seen": "2026-09-16T13:11:37+00:00"
     },
     "ibeach-tournaments:tournament:41100": {
-      "fingerprint": "3d398a7927499a64",
+      "fingerprint": "cf3dfd35e1833315",
       "name": "iBeach JUNIORS AVPA 18-12u",
       "start_date": "2026-11-14",
-      "last_seen": "2026-11-12T13:07:32+00:00"
+      "last_seen": "2026-11-14T13:06:15+00:00"
     },
     "ibeach-leagues:league:107464": {
       "fingerprint": "b6da5168977948b9",
@@ -906,6 +906,12 @@
       "name": "Winter 2027 Sunday Volleyball 6's League - HRH YMCA (AVON)",
       "start_date": "2027-01-10",
       "last_seen": "2026-11-13T13:07:48+00:00"
+    },
+    "cca-tournaments:tournament:102368": {
+      "fingerprint": "2e023485d522ebe6",
+      "name": "DECEMBER 2026 COED 6'S INDOOR VOLLEYBALL TOURNAMENT",
+      "start_date": "2026-12-04",
+      "last_seen": "2026-11-14T13:06:15+00:00"
     }
   }
 }
