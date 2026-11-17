@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14T13:06:15+00:00",
+  "updated_at": "2026-11-17T13:08:02+00:00",
   "events": {
     "cca:league:102721": {
       "fingerprint": "147e5a9363cf0d47",
@@ -912,6 +912,12 @@
       "name": "DECEMBER 2026 COED 6'S INDOOR VOLLEYBALL TOURNAMENT",
       "start_date": "2026-12-04",
       "last_seen": "2026-11-14T13:06:15+00:00"
+    },
+    "ibeach-tournaments:tournament:42675": {
+      "fingerprint": "be1d8f27577bca15",
+      "name": "December Dual club v club Teams of 6 players (3 doubles teams per team)",
+      "start_date": "2026-12-19",
+      "last_seen": "2026-11-17T13:08:02+00:00"
     }
   }
 }
