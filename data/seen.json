@@ -1,54 +1,6 @@
 {
-  "updated_at": "2026-11-17T13:08:02+00:00",
+  "updated_at": "2026-11-20T13:07:37+00:00",
   "events": {
-    "cca:league:102721": {
-      "fingerprint": "147e5a9363cf0d47",
-      "name": "Fall 2026 Wednesday Indoor Volleyball 6's League - FBA",
-      "start_date": "2026-08-19",
-      "last_seen": "2026-08-19T15:55:02+00:00"
-    },
-    "ibeach-leagues:league:105615": {
-      "fingerprint": "562c0eda7b4f0663",
-      "name": "Fall 2026 Thursday Coed 2v2 A (competitive)",
-      "start_date": "2026-08-20",
-      "last_seen": "2026-08-19T15:55:02+00:00"
-    },
-    "ibeach-leagues:league:105614": {
-      "fingerprint": "bfcac54171e6761e",
-      "name": "Fall 2026 Thursday Coed 2v2 Level BB (upper intermediate)",
-      "start_date": "2026-08-20",
-      "last_seen": "2026-08-19T15:55:02+00:00"
-    },
-    "ibeach-leagues:league:105613": {
-      "fingerprint": "dcbd6bb34ccb2b39",
-      "name": "Fall 2026 Thursday Coed 4v4 A (Competitive)",
-      "start_date": "2026-08-20",
-      "last_seen": "2026-08-19T15:55:02+00:00"
-    },
-    "ibeach-leagues:league:105612": {
-      "fingerprint": "89849ad8e9dc679e",
-      "name": "Fall 2026 Thursday Coed 4v4 B/BB (intermediate)",
-      "start_date": "2026-08-20",
-      "last_seen": "2026-08-19T15:55:02+00:00"
-    },
-    "ibeach-leagues:league:105611": {
-      "fingerprint": "b5d5179d31c26b1f",
-      "name": "Fall 2026 Thursday Coed 6v6 Level B/BB (intermediate)",
-      "start_date": "2026-08-20",
-      "last_seen": "2026-08-19T15:55:02+00:00"
-    },
-    "cca-tournaments:tournament:102365": {
-      "fingerprint": "03b7498b7ed8769e",
-      "name": "AUGUST 2026 COED 6'S INDOOR VOLLEYBALL TOURNAMENT",
-      "start_date": "2026-08-21",
-      "last_seen": "2026-08-19T15:55:02+00:00"
-    },
-    "ibeach-leagues:league:103203": {
-      "fingerprint": "c3780087a9a63e63",
-      "name": "Friday Adult Open Play",
-      "start_date": "2026-08-21",
-      "last_seen": "2026-08-19T15:55:02+00:00"
-    },
     "ibeach-leagues:league:105619": {
       "fingerprint": "707585a76526a263",
       "name": "Fall 2026 Sunday Coed 2v2 Level B",
@@ -746,10 +698,10 @@
       "last_seen": "2026-11-13T13:07:48+00:00"
     },
     "ibeach-leagues:league:109180": {
-      "fingerprint": "20d29b9d3aaa9e52",
+      "fingerprint": "5a20cbfd7e3147c0",
       "name": "Friday Adult Open Play",
       "start_date": "2026-11-27",
-      "last_seen": "2026-11-04T13:07:42+00:00"
+      "last_seen": "2026-11-20T13:07:37+00:00"
     },
     "ibeach-leagues:league:109181": {
       "fingerprint": "f5680bd21074039e",
