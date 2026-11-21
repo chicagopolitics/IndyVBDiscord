@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-20T13:07:37+00:00",
+  "updated_at": "2026-11-21T13:06:29+00:00",
   "events": {
     "ibeach-leagues:league:105619": {
       "fingerprint": "707585a76526a263",
@@ -870,6 +870,12 @@
       "name": "December Dual club v club Teams of 6 players (3 doubles teams per team)",
       "start_date": "2026-12-19",
       "last_seen": "2026-11-17T13:08:02+00:00"
+    },
+    "ibeach-leagues:league:110859": {
+      "fingerprint": "bf16afb6ca92c0e1",
+      "name": "Indoor Winter 2026 Wednesday Women's Work Up Competitive",
+      "start_date": "2026-12-16",
+      "last_seen": "2026-11-21T13:06:29+00:00"
     }
   }
 }
